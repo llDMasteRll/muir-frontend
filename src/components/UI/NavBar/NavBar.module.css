@@ -1,0 +1,22 @@
+/* 🔷 Навигационная панель */
+.nav {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 🔗 Ссылки навигации */
+.nav a {
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1.5em;
+}
+
+.nav a:hover {
+  color: #BDC3C7; /* цвет при наведении */
+}
+
+.nav a.active {
+  border-bottom: 2px solid #BDC3C7; /* активная вкладка */
+}
