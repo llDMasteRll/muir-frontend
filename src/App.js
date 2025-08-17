@@ -1,13 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import Home from './pages/Home.jsx'; // Adjust the import path as necessary
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
+    <>
+      <Home />
+    </>
   );
 }
 
