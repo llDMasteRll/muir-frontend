@@ -14,8 +14,9 @@ const Header = () => {
   return (
     <header>
       <div className="container">
-        <img src="/Logo.svg"></img>
-
+        <a href="/">
+          <img style={{width: "100%", height: "100%"}} src="/Logo.svg"></img>
+        </a>
         <NavBar links={links} />
 
         <Search name="search" type="text" placeholder="Search" />

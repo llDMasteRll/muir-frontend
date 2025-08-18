@@ -9,19 +9,18 @@
   outline: none;
   padding: 6px;
   background-color: transparent;
-  border: 1px solid #E9F8FF;
-  border-radius: 3px 0 0 3px;
+  border: 1px solid #5d6d7e;
+  border-radius: 5px 0 0 5px;
   border-right: none;
   font-size: 1em;
-  color: #000000;
 }
 
 .search input:focus {
-  border: 1px solid #5d6d7e;
+  border: 1px solid #7ba7c5;
   border-right: none;
 }
 
 .search Button {
-  border-radius: 0 3px 3px 0;
+  border-radius: 0 5px 5px 0;
   padding: 11px 15px;
 }

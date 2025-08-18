@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+footer {
+  height: 30vh;
+  width: 100%;
+  background-color: black;
+}

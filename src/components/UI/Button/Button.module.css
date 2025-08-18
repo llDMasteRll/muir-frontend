@@ -4,10 +4,10 @@
   background-color: #5d6d7e;
   border: none;
   padding: 11px 30px;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #34495e;
+  background-color: #7ba7c5;
 }
