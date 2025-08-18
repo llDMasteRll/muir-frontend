@@ -1,0 +1,26 @@
+.search {
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.search input[type="text"] {
+  height: inherit;
+  outline: none;
+  padding: 6px;
+  background-color: transparent;
+  border: 1px solid #5d6d7e;
+  border-radius: 5px 0 0 5px;
+  border-right: none;
+  font-size: 1em;
+}
+
+.search input:focus {
+  border: 1px solid #678ca6;
+  border-right: none;
+}
+
+.search Button {
+  border-radius: 0 5px 5px 0;
+  padding: 11px 15px;
+}
