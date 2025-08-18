@@ -1,32 +1,37 @@
 * {
-  padding: 0;
-  margin: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  box-sizing: border-box;
-  color: #E9F8FF;
-  font-family: "Inter", sans-serif;
+    padding: 0;
+    margin: 0; 
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;  
+    box-sizing: border-box;
+    color: #E9F8FF;
+    font-family: "Inter", sans-serif;
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Высота экрана */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-
-main {
-  flex: 1; /* Основное содержимое занимает оставшееся пространство */
-  width: 100%;
-}
-
 
 header,
 footer {
   padding: 10px;
   text-align: center;
 }
+
+main {
+    flex: 1; 
+    padding: 20px;
+}
+/* 
+main {
+  flex: 1; 
+  width: 100%;
+}
+ */
 
 header {
   position: absolute;
