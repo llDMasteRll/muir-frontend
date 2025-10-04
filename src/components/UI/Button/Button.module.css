@@ -1,13 +1,28 @@
 .button {
   font-size: 1em;
   height: inherit;
-  background-color: #5d6d7e;
+  background-color: #678CA6;
   border: none;
   padding: 11px 30px;
   border-radius: 5px;
   cursor: pointer;
+  text-wrap: nowrap;
+  transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #678ca6;
+.border_button {
+  font-size: 1em;
+  height: inherit;
+  background-color: #678CA6;
+  border: 1px solid #5d6d7e;
+  padding: 11px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-wrap: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover,
+.border_button:hover {
+  background-color: #4E6F86;
 }

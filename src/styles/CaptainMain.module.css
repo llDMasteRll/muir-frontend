@@ -1,0 +1,52 @@
+.main {
+  margin-top: 8%;
+}
+
+.content {
+  margin-top: 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.search_container {
+  width: 60%;
+  margin-bottom: 64px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin-right: 2%;
+}
+
+.tab {
+  width: 100%;
+  all: unset;
+  font-size: 2em;
+  font-weight: 400;
+  text-wrap: wrap;
+  color: rgba(103, 140, 166, 50%);
+  margin-right: 30px;
+  padding: 0 5px;
+}
+
+.tab:hover {
+  color: rgb(103, 140, 166);
+  cursor: pointer;
+}
+
+.active {
+  color: rgb(103, 140, 166);
+  border-bottom: solid 1px rgb(103, 140, 166);
+}
+

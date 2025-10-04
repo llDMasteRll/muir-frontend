@@ -1,14 +1,23 @@
-import React from "react";
-import Button from "../Button/Button"
+import Button from "../Button/Button";
 import styles from "./Search.module.css";
+import icon from "./Search_icon(1).svg";
 
-const Search = ({ name, type, placeholder }) => {
+const Search = ({ name, type, placeholder, height, width, color, buttonContent, buttonColor, buttonBorders=0 }) => {
   return (
-    <div className={styles.search}>
-      <input name={name} type={type} placeholder={placeholder} />
-      <Button>Ok</Button>
+    <div className={styles.search} style={{height, width}}>
+      <input name={name} type={type} placeholder={placeholder} style={{color}} />
+      <Button borderLeft="0" backgroundColor={buttonColor} buttonBorders={buttonBorders} hoverColor={buttonColor ? "transperent" : ""}>
+        {buttonContent ? buttonContent : <img src={icon} alt="Search Icon" />}
+      </Button>
     </div>
   );
 };
 
 export default Search;
+
+
+// Need to add more optional settings
+// Need to add transformation into search circle for mobiles
+
+// Usage example:
+// <Search name="search" type="text" placeholder="Search" />
