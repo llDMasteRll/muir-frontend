@@ -31,10 +31,12 @@ const CaptainMain = () => {
           <div className={styles.crew_list}>
             <div className={styles.menu}>
               <div className={styles.tabs}>
-                <button className={`${styles.tab} ${styles.active}`}>
+                <div className={`${styles.tab} ${styles.active}`}>
                   Crew list
-                </button>
-                <button className={styles.tab}>Statistic</button>
+                </div>
+                <div className={styles.tab}>
+                  Statistic
+                </div>
               </div>
               <div className={styles.buttons}>
                 <Button
