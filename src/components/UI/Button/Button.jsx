@@ -1,22 +1,30 @@
 import React, { useState } from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ name, color, backgroundColor, hoverColor, buttonBorders, borderLeft, children }) => {
+const Button = ({
+  name,
+  color,
+  backgroundColor,
+  hoverColor,
+  buttonBorders,
+  borderLeft,
+  className,        
+  children
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const customStyle = {
-    color,
     backgroundColor: isHovered ? hoverColor : backgroundColor,
-    color: isHovered ?  "#F0FAFF" : color,
+    color: isHovered ? "#F0FAFF" : color, // keep only one 'color'
     borderLeft,
   };
 
-  const className = buttonBorders ? styles.border_button : styles.button;
+  const baseClass = buttonBorders ? styles.border_button : styles.button;
 
   return (
     <button
       name={name}
-      className={className}
+      className={`${baseClass} ${className || ""}`} // merge classes
       style={customStyle}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

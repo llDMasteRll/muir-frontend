@@ -10,17 +10,18 @@
   transition: background-color 0.3s ease;
 }
 
-.border_button {
+.border_button {  
   font-size: 1em;
-  height: inherit;
+  max-height: 49px;
   background-color: #678CA6;
   border: 1px solid #5d6d7e;
   padding: 11px 30px;
   border-radius: 5px;
   cursor: pointer;
-  text-wrap: nowrap;
+  white-space: nowrap;
   transition: background-color 0.3s ease;
 }
+
 
 .button:hover,
 .border_button:hover {

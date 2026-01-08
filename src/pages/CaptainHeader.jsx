@@ -9,7 +9,7 @@ const CaptainHeader = () => {
   };
 
   return (
-    <header>
+    <header style={{backgroundColor: "#F0FAFF"}}>
       <div className={`container ${styles.underscore}`}>
         <h1 className="ship_name">{data.name}, welcome to Muir!</h1>
         <h2 className="email">Email: {data.email}</h2>

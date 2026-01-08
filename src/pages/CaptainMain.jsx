@@ -2,6 +2,7 @@ import styles from "../styles/CaptainMain.module.css"; // Assuming you have a CS
 import Search from "../components/UI/Search/Search";
 import Table from "../components/UI/Table/Table";
 import Button from "../components/UI/Button/Button";
+import filter from "../components/UI/Filter/filter(1).png";
 
 const CaptainMain = () => {
   const links = [
@@ -13,33 +14,37 @@ const CaptainMain = () => {
     <main>
       <div className="container">
         <div className={styles.content}>
-          <div className={styles.search_container}>
-            <h2 style={{ textWrap: "nowrap", marginRight: "28px" }}>
-              Who are you looking for?
-            </h2>
-            <Search
-              name="search"
-              type="text"
-              placeholder="Search"
-              height="49px"
-              width="60%"
-              color="#182C3A"
-              buttonColor="transparent"
-              buttonBorders="1"
-            />
-          </div>
           <div className={styles.crew_list}>
             <div className={styles.menu}>
               <div className={styles.tabs}>
                 <div className={`${styles.tab} ${styles.active}`}>
                   Crew list
                 </div>
-                <div className={styles.tab}>
-                  Statistic
-                </div>
-              </div>
+                <div className={styles.tab}>Statistic</div>
+              </div>              
               <div className={styles.buttons}>
+                <div className={styles.search_container}>
+                <Search
+                  name="search"
+                  type="text"
+                  placeholder="Who are you looking for?"
+                  height="49px"
+                  color="#182C3A"
+                  buttonColor="transparent"
+                  buttonBorders="1"
+                />
+              </div>
                 <Button
+                  className={styles.filter}
+                  color="#678CA6"
+                  backgroundColor="transparent"
+                  buttonBorders="1"
+                >
+                  <img className={styles.filter_img} src={filter} alt="" />
+                  Filter
+                </Button>
+                <Button
+                  className={styles.spaces}
                   color="#678CA6"
                   backgroundColor="transparent"
                   buttonBorders="1"
@@ -47,6 +52,7 @@ const CaptainMain = () => {
                   Add
                 </Button>
                 <Button
+                className={styles.spaces}
                   color="#678CA6"
                   backgroundColor="transparent"
                   buttonBorders="1"

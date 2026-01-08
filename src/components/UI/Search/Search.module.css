@@ -10,8 +10,9 @@
 }
 
 .search input[type="text"] {
+  width: 20vw;
   outline: none;
-  padding: 6px;
+  padding: 10px;
   background-color: transparent;
   border: 1px solid #5d6d7e;
   border-radius: 5px 0 0 5px;
@@ -26,7 +27,7 @@
 
 .search Button {
   border-radius: 0 5px 5px 0;
-  padding: 11px 15px;
+  padding: 11px 10px;
   display: flex;
   align-items: center;
   justify-content: center;

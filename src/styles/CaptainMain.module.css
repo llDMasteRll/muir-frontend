@@ -10,23 +10,28 @@
 }
 
 .search_container {
-  width: 60%;
-  margin-bottom: 64px;
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
 }
 
 .menu {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 .buttons {
     display: flex;
     justify-content: space-between;
-    width: 250px;
+    width: 55%;
     margin-right: 2%;
+    gap: 10px;
+}
+
+.spaces {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .tabs {
@@ -38,7 +43,7 @@
   all: unset;
   font-size: 2em;
   font-weight: 400;
-  text-wrap: wrap;
+  text-wrap: nowrap;
   color: rgba(103, 140, 166, 50%);
   margin-right: 30px;
   padding: 0 5px;
@@ -53,4 +58,22 @@
   color: rgb(103, 140, 166);
   border-bottom: solid 1px rgb(103, 140, 166);
 }
+.filter {   
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.filter:hover img { 
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) hue-rotate(180deg); 
+}
+
+.filter_img {
+  width: 25px;
+  height: 25px;
+  color: #678ca6;
+  border-radius: 5px;
+}
+
 

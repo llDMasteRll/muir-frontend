@@ -39,6 +39,7 @@
 
 
 .Table th {
+  text-wrap: nowrap;
   font-size: 1.25em;
   font-weight: 400;
   color: #E9F8FF;
@@ -80,4 +81,19 @@
 
 .edit {
   cursor: pointer;
+}
+
+.curent_page {
+  font-size: 1em;
+  outline: none;
+  width: 40px;
+  color: #182C3A;
+  border: solid 1px #678ca6;
+  border-radius: 5px;
+  text-align: center;
+  margin: 0 5px;
+
+}
+.curent_page input:focus {
+  border: 1px solid #678ca6;
 }
