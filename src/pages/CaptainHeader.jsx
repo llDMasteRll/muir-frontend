@@ -15,7 +15,7 @@ const CaptainHeader = () => {
         <h2 className="email">Email: {data.email}</h2>
         <Button>Password</Button>
         <Button>Documentation</Button>
-        <Button>Log out</Button>
+        <Button onClick={() => {localStorage.removeItem("crewPage");}}>Log out</Button>
       </div>
     </header>
   );

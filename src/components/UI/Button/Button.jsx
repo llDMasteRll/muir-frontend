@@ -8,7 +8,8 @@ const Button = ({
   hoverColor,
   buttonBorders,
   borderLeft,
-  className,        
+  className,
+  onClick,
   children
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -28,6 +29,7 @@ const Button = ({
       style={customStyle}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       {children}
     </button>
