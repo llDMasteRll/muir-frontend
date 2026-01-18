@@ -4,7 +4,9 @@ import Search from "../components/UI/Search/Search";
 import Table from "../components/UI/Table/Table";
 import Button from "../components/UI/Button/Button";
 import filter from "../components/UI/Filter/filter(1).png";
-import FetchCrew from "../functions/fetch_crew";
+import fetchCrew from "../functions/fetchCrew";
+import addCrew from "../functions/addCrew";
+import deleteCrew from "../functions/deleteCrew";
 
 const CaptainMain = () => {
   const links = [
@@ -17,17 +19,26 @@ const CaptainMain = () => {
     const memoPage = localStorage.getItem("crewPage");
     return memoPage ? Number(memoPage) : 1;
   });
+  const [personData, setPersonData] = useState({
+    position: "Third Engineer",
+    first_name: "Daniel",
+    last_name: "Lewis",
+    date_of_birth: "1990-06-30",
+    sign_on_date: "2022-09-05",
+    sign_off_date: "2023-10-12",
+    status: 1,
+  });
+  const [selectedIds, setSelectedIds] = useState([]);
 
   async function loadCrewData() {
-    const data = await FetchCrew(page);
+    const data = await fetchCrew(page);
     setCrew(data);
   }
-
   useEffect(() => {
     loadCrewData();
-
-    localStorage.setItem("crewPage", page)
+    localStorage.setItem("crewPage", page);
   }, [page]);
+
 
   return (
     <main>
@@ -67,6 +78,7 @@ const CaptainMain = () => {
                   color="#678CA6"
                   backgroundColor="transparent"
                   buttonBorders="1"
+                  onClick={() => addCrew(personData)}
                 >
                   Add
                 </Button>
@@ -75,12 +87,22 @@ const CaptainMain = () => {
                   color="#678CA6"
                   backgroundColor="transparent"
                   buttonBorders="1"
+                  onClick={() => selectedIds.forEach(id => deleteCrew(id))}
                 >
-                  Remove
+                  Delete
                 </Button>
               </div>
             </div>
-            <Table data={crew} page={page} setPage={setPage}/>
+            {crew.pages > 0 ? (
+              <Table
+                data={crew}
+                page={page}
+                setPage={setPage}
+                onSelectionChange={setSelectedIds}
+              />
+            ) : (
+              <h2 className={styles.without_data}>No crew records found</h2>
+            )}
           </div>
         </div>
       </div>

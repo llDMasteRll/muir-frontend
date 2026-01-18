@@ -76,4 +76,17 @@
   border-radius: 5px;
 }
 
+.without_data {
+  width: 90vw;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5a6e7d;
+  background-color: rgba(192, 200, 204, 0.1);
+  border: 5px solid transparent;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(192, 200, 204, 0.1); 
+}
+
 

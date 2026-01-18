@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function FetchCrew(page) {
+async function fetchCrew(page) {
   const response = await axios.get("http://localhost:3030/crew", {
     params: {
       _page: page
@@ -10,5 +10,5 @@ async function FetchCrew(page) {
   return response.data;
 }
 
-export default FetchCrew;
+export default fetchCrew;
 

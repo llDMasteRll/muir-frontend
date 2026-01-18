@@ -4,12 +4,17 @@ import CheckBox from "../CheckBox/CheckBox";
 import Button from "../Button/Button";
 import { ReactComponent as Edit } from "./Edit.svg";
 
-const Table = ({ data, page, setPage }) => {
+const Table = ({ data, page, setPage, onSelectionChange }) => {
   const [inputPage, setInputPage] = useState(page);
+  const [selectedIds, setSelectedIds] = useState([]); // For checkBox, and also will be used for deleting logic
 
   useEffect(() => {
     setInputPage(page);
   }, [page]);
+
+  useEffect(() => {
+    onSelectionChange(selectedIds);
+  }, [selectedIds]);
 
   if (!Array.isArray(data.data)) {
     console.log("data is not an array:", data.data);
@@ -19,13 +24,12 @@ const Table = ({ data, page, setPage }) => {
   const prevPage = () => {
     if (page > 1) setPage(page - 1);
   };
+
   const nextPage = () => {
-    if (page < data.pages) setPage(page + 1); // don't forget to add a check in future
+    if (page < data.pages) setPage(page + 1);
   };
 
-  const item = (index) => {
-    return page > 1 ? String((page - 1) * 10 + (index + 1)): String(index + 1);
-  }
+  const item = (index) => page > 1 ? String((page - 1) * 10 + (index + 1)) : String(index + 1);
 
   const commitValue = () => {
     const currPage = Number(inputPage);
@@ -34,6 +38,13 @@ const Table = ({ data, page, setPage }) => {
     } else {
       setInputPage(String(page));
     }
+  };
+
+
+  const toggleSelectedId = (newId) => {
+    setSelectedIds((arr) =>
+      arr.includes(newId) ? arr.filter((id) => id != newId) : [...arr, newId]
+    );
   };
 
   return (
@@ -72,7 +83,10 @@ const Table = ({ data, page, setPage }) => {
             {data.data.map((person, index) => (
               <tr key={person.id}>
                 <td>
-                  <CheckBox />
+                  <CheckBox
+                    checked={selectedIds.includes(person.id)}
+                    onChange={() => toggleSelectedId(person.id)}
+                  />
                 </td>
                 <td>{item(index)}</td>
                 <td>{person.position}</td>
