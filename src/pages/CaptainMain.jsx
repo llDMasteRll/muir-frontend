@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "../styles/CaptainMain.module.css"; // Assuming you have a CSS module for styles
 import Search from "../components/UI/Search/Search";
 import Table from "../components/UI/Table/Table";
@@ -14,11 +15,11 @@ const CaptainMain = () => {
     { path: "/", label: "Statistic" },
   ];
 
-  const [crew, setCrew] = useState([]);
   const [page, setPage] = useState(() => {
     const memoPage = localStorage.getItem("crewPage");
     return memoPage ? Number(memoPage) : 1;
   });
+
   const [personData, setPersonData] = useState({
     position: "Third Engineer",
     first_name: "Daniel",
@@ -28,17 +29,42 @@ const CaptainMain = () => {
     sign_off_date: "2023-10-12",
     status: 1,
   });
+
   const [selectedIds, setSelectedIds] = useState([]);
 
-  async function loadCrewData() {
-    const data = await fetchCrew(page);
-    setCrew(data);
-  }
-  useEffect(() => {
-    loadCrewData();
-    localStorage.setItem("crewPage", page);
-  }, [page]);
+  const queryClient = useQueryClient();
 
+  const {
+    data: crew,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["crew", page],
+    queryFn: () => {
+      localStorage.setItem("crewPage", page);
+      return fetchCrew(page);
+    },
+    keepPreviousData: true,
+  });
+
+  const addCrewMutation = useMutation({
+    mutationFn: addCrew,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["crew"]);
+    },
+  });
+
+  const deleteCrewMutation = useMutation({
+    mutationFn: deleteCrew,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["crew"]);
+      setSelectedIds([]);
+      console.log(selectedIds);
+    },
+  });
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error loading crew data</p>;
 
   return (
     <main>
@@ -78,7 +104,7 @@ const CaptainMain = () => {
                   color="#678CA6"
                   backgroundColor="transparent"
                   buttonBorders="1"
-                  onClick={() => addCrew(personData)}
+                  onClick={() => addCrewMutation.mutate(personData)}
                 >
                   Add
                 </Button>
@@ -87,7 +113,9 @@ const CaptainMain = () => {
                   color="#678CA6"
                   backgroundColor="transparent"
                   buttonBorders="1"
-                  onClick={() => selectedIds.forEach(id => deleteCrew(id))}
+                  onClick={() =>
+                    selectedIds.forEach((id) => deleteCrewMutation.mutate(id))
+                  }
                 >
                   Delete
                 </Button>
@@ -98,7 +126,8 @@ const CaptainMain = () => {
                 data={crew}
                 page={page}
                 setPage={setPage}
-                onSelectionChange={setSelectedIds}
+                selectedIds={selectedIds} // передаём массив
+                setSelectedIds={setSelectedIds} // передаём функцию
               />
             ) : (
               <h2 className={styles.without_data}>No crew records found</h2>

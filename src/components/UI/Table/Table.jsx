@@ -4,17 +4,13 @@ import CheckBox from "../CheckBox/CheckBox";
 import Button from "../Button/Button";
 import { ReactComponent as Edit } from "./Edit.svg";
 
-const Table = ({ data, page, setPage, onSelectionChange }) => {
+const Table = ({ data, page, setPage, selectedIds, setSelectedIds }) => {
   const [inputPage, setInputPage] = useState(page);
-  const [selectedIds, setSelectedIds] = useState([]); // For checkBox, and also will be used for deleting logic
 
   useEffect(() => {
     setInputPage(page);
   }, [page]);
 
-  useEffect(() => {
-    onSelectionChange(selectedIds);
-  }, [selectedIds]);
 
   if (!Array.isArray(data.data)) {
     console.log("data is not an array:", data.data);
