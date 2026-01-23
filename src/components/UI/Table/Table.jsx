@@ -37,9 +37,11 @@ const Table = ({ data, page, setPage, selectedIds, setSelectedIds }) => {
   };
 
 
-  const toggleSelectedId = (newId) => {
-    setSelectedIds((arr) =>
-      arr.includes(newId) ? arr.filter((id) => id != newId) : [...arr, newId]
+  const toggleSelectedPerson = (newPerson) => {
+    const newId = newPerson.id;
+    console.log(selectedIds)
+    setSelectedIds((arr) => 
+       arr.some(p => p.id === newId) ? arr.filter(p => p.id != newId) : [...arr, newPerson]
     );
   };
 
@@ -80,8 +82,8 @@ const Table = ({ data, page, setPage, selectedIds, setSelectedIds }) => {
               <tr key={person.id}>
                 <td>
                   <CheckBox
-                    checked={selectedIds.includes(person.id)}
-                    onChange={() => toggleSelectedId(person.id)}
+                    checked={selectedIds.some(p => p.id === person.id)}
+                    onChange={() => toggleSelectedPerson(person)}
                   />
                 </td>
                 <td>{item(index)}</td>

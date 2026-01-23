@@ -89,4 +89,29 @@
   box-shadow: 0 0 15px rgba(192, 200, 204, 0.1); 
 }
 
+.modal_header {
+  text-align: center;
+}
 
+.scroll_list {
+  max-height: 255px; 
+  overflow-y: auto;  
+  margin: 20px 0;
+  padding-right: 8px; 
+}
+
+.scroll_list li {  
+  font-size: 1.2em;
+  color: #2a3f4d ;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px 0; 
+  border-bottom: 1px solid #bad1e0;
+}
+
+
+.scroll_list li:first-child { 
+  border-top: 1px solid #bad1e0;  
+}
+
+/* .scroll_list li:last-child { border-bottom: none;  }*/

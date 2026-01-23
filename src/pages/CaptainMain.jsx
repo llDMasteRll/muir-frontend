@@ -4,6 +4,9 @@ import styles from "../styles/CaptainMain.module.css"; // Assuming you have a CS
 import Search from "../components/UI/Search/Search";
 import Table from "../components/UI/Table/Table";
 import Button from "../components/UI/Button/Button";
+import ModalWindow from "../components/UI/ModalWindow/ModalWindow";
+import CrewDataInput from "../components/UI/CrewDataInput/CrewDataInput";
+import Toast from "../components/UI/Toast/Toast";
 import filter from "../components/UI/Filter/filter(1).png";
 import fetchCrew from "../functions/fetchCrew";
 import addCrew from "../functions/addCrew";
@@ -32,6 +35,10 @@ const CaptainMain = () => {
 
   const [selectedIds, setSelectedIds] = useState([]);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [notification, setNotification] = useState(null);
+
   const queryClient = useQueryClient();
 
   const {
@@ -58,16 +65,32 @@ const CaptainMain = () => {
     mutationFn: deleteCrew,
     onSuccess: () => {
       queryClient.invalidateQueries(["crew"]);
+      setNotification({
+        type: "success",
+        message: "The deletion was successful ✅",
+      });
+      setTimeout(() => setNotification(null), 4000); // must match the animation time in the Toast.module.css
       setSelectedIds([]);
-      console.log(selectedIds);
+    },
+    onError: () => {
+      setNotification({ type: "error", message: "Error while deleting ❌" });
+      setTimeout(() => setNotification(null), 4000);
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error loading crew data</p>;
+  const confirmDeleting = () => {
+    setIsOpen(false);
+    return selectedIds.forEach((person) =>
+      deleteCrewMutation.mutate(person.id),
+    );
+  };
+
+  if (isLoading) return <h2>Loading...</h2>;
+  if (isError) return <h2>Error loading crew data</h2>;
 
   return (
     <main>
+      <Toast notification={notification} />
       <div className="container">
         <div className={styles.content}>
           <div className={styles.crew_list}>
@@ -113,12 +136,32 @@ const CaptainMain = () => {
                   color="#678CA6"
                   backgroundColor="transparent"
                   buttonBorders="1"
-                  onClick={() =>
-                    selectedIds.forEach((id) => deleteCrewMutation.mutate(id))
-                  }
+                  onClick={() => setIsOpen(true)}
                 >
                   Delete
                 </Button>
+
+                <ModalWindow
+                  onConfirm={confirmDeleting}
+                  isOpen={isOpen}
+                  onClose={() => setIsOpen(false)}
+                >
+                  <h2 className={styles.modal_header}>Confirm deletion of the listed entries</h2>
+                  <div className={styles.scroll_list}>
+                    {selectedIds.map((selected) => {
+                      const person = crew?.data?.find(
+                        (p) => p.id === selected.id,
+                      );
+                      return (
+                        <li key={selected.id}>
+                          {" "}
+                          {selected.position} {selected.first_name}{" "}
+                          {selected.last_name} {selected.date_of_birth}{" "}
+                        </li>
+                      );
+                    })}
+                  </div>
+                </ModalWindow>
               </div>
             </div>
             {crew.pages > 0 ? (
