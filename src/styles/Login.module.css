@@ -1,0 +1,145 @@
+/* Фон страницы */
+.loginBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../../public/images/login_background.png") no-repeat;
+  background-size: 101% 101%;
+}
+
+/* Стеклянный круг */
+.loginCircle {
+  position: relative;
+  width: 844px;
+  height: 844px;
+  border-radius: 50%;
+  /*background: rgba(255, 255, 255, 0.22)*/;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  overflow: hidden;
+}
+
+/* SVG overlay поверх круга */
+.glassIconOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 844px;
+  height: 844px;
+  transform: translate(-50%, -50%) rotate(9.54deg);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0; /* позади контента */
+}
+
+.glassIconOverlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: none;
+}
+
+/* Контент внутри круга поверх SVG */
+.contentWrapper {
+  position: relative;
+  height: 55%;
+  z-index: 1; /* поверх SVG */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+
+/* Заголовок */
+.header {
+  text-align: center;
+}
+
+.header h2 {
+  font-weight: bold;
+  font-size: 2.5em;
+  color: #355275;
+  margin: 0;
+}
+
+.header p {
+  font-size: 1.25em;
+  color: #355275;
+  margin: 0;
+}
+
+/* Форма логина */
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px; /* расстояние между полями */
+}
+
+.inputGroup {
+  position: relative;
+  width: 100%;
+}
+
+.inputGroup input {
+  width: 454px; /* подогнал под круг */
+  height: 49px;
+  padding: 10px 40px 10px 10px; /* место для кнопки глазика */
+  border-radius: 8px;
+  border: 2px solid #2f5d7c;
+  font-size: 1em;
+  outline: none;
+  color: #2f5d7c;
+  background-color: #e9f8ff;
+}
+
+.inputGroup input::placeholder {
+  color: #2f5d7c;
+}
+
+/* Кнопка Log In */
+.loginButton {
+  width: 454px;
+  height: 49px;
+  border-radius: 8px;
+  border: none;
+  background-color: #365581;
+  color: #e9f8ff;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top:20px;
+}
+
+.loginButton:hover {
+  background-color: #2d5791;
+}
+
+/* Кнопка глазика */
+.eyeButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.eyeButton img {
+  width: 24px;
+  height: 24px;
+}

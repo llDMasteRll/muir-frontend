@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ name, color, backgroundColor, hoverColor, buttonBorders, borderLeft, children }) => {
+const Button = ({ name, color, backgroundColor, hoverColor, buttonBorders, borderLeft, children, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const customStyle = {
@@ -18,6 +18,7 @@ const Button = ({ name, color, backgroundColor, hoverColor, buttonBorders, borde
       name={name}
       className={className}
       style={customStyle}
+      onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

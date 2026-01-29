@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../components/UI/Button/Button";
 import Search from "../components/UI/Search/Search";
 import NavBar from "../components/UI/NavBar/NavBar";
 
 const Header = () => {
+
+  const navigate = useNavigate();
   const links = [
     { path: "/", label: "Home" },
     { path: "/captain_main", label: "Captain" },
@@ -20,7 +23,7 @@ const Header = () => {
 
         <Search name="search" type="text" placeholder="Search" buttonContent="Ok"/>
 
-        <Button name="login">Log in</Button>
+        <Button name="login" onClick={() => navigate("/login")}>Log in</Button>
       </div>
     </header>
   );
