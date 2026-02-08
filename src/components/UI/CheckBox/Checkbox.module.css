@@ -39,11 +39,11 @@
 }
 
 .checkBox:hover input ~ .checkmark {
-  background-color: #9fb6c0;
+  background-color: rgba(159, 182, 192, 0.5);
 }
 
 
-/* When the checkbox is checked, add a blue background */
+/* When the checkbox is checked, adds a blue background */
 .checkBox input:checked ~ .checkmark {
   background-color: #678CA6;
 }

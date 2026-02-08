@@ -8,9 +8,11 @@
   cursor: pointer;
   text-wrap: nowrap;
   transition: background-color 0.3s ease;
+  position: relative;
 }
 
 .border_button {  
+  height: 100%;
   font-size: 1em;
   max-height: 49px;
   background-color: #678CA6;
@@ -20,6 +22,7 @@
   cursor: pointer;
   white-space: nowrap;
   transition: background-color 0.3s ease;
+  position: relative;
 }
 
 

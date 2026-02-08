@@ -1,5 +1,5 @@
 // routes.js
-import React from "react";
+import React, { useMemo } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 // Импорт компонентов страниц
@@ -9,10 +9,18 @@ import HomePage from "./pages/Home";
 // import ContactsPage from "./pages/ContactsPage";
 import NotFoundPage from "./pages/NotFound";
 import CaptainMainPage from "./pages/CaptainMain";
+import CaptainAdd from "./pages/CaptainAdd";
 
 // Импорт layout (если есть)
 import RootLayout from "./layouts/RootLayout";
 import CaptainLayout from "./layouts/CaptainLayout";
+
+const links = {
+  landing: "/",
+  captain: "/captain",
+  statistic: "./statistic", //for captain page
+  add: "./add", //for captain page
+};
 
 const router = createBrowserRouter([
   {
@@ -27,10 +35,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/captain_main",
-    element: <CaptainLayout />,
+    path: "/captain",
+    element: <CaptainLayout links={links} />,
     children: [
-      { index: true, element: <CaptainMainPage /> },
+      { index: true, element: <CaptainMainPage links={links} /> },
+      { path: "add", element: <CaptainAdd links={links} /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

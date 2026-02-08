@@ -3,7 +3,8 @@
 }
 
 .content {
-  margin-top: 85px;
+  width: 100%;
+  margin-top: 135px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,18 +16,17 @@
 }
 
 .menu {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 55%;
-    margin-right: 2%;
-    gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+  margin-right: 2%;
+  gap: 10px;
 }
 
 .spaces {
@@ -58,15 +58,16 @@
   color: rgb(103, 140, 166);
   border-bottom: solid 1px rgb(103, 140, 166);
 }
-.filter {   
+.filter {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
 
-.filter:hover img { 
-  filter: brightness(0) saturate(100%) invert(80%) sepia(100%) hue-rotate(180deg); 
+.filter:hover img {
+  filter: brightness(0) saturate(100%) invert(80%) sepia(100%)
+    hue-rotate(180deg);
 }
 
 .filter_img {
@@ -86,32 +87,152 @@
   background-color: rgba(192, 200, 204, 0.1);
   border: 5px solid transparent;
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(192, 200, 204, 0.1); 
+  box-shadow: 0 0 15px rgba(192, 200, 204, 0.1);
+}
+
+.modal_padding {
+  padding: 30px;
 }
 
 .modal_header {
   text-align: center;
+  text-wrap: nowrap;
 }
 
 .scroll_list {
-  max-height: 255px; 
-  overflow-y: auto;  
+  max-height: 255px;
+  overflow-y: auto;
   margin: 20px 0;
-  padding-right: 8px; 
+  padding-right: 8px;
 }
 
-.scroll_list li {  
+.scroll_list li {
   font-size: 1.2em;
-  color: #2a3f4d ;
+  color: #2a3f4d;
   width: 100%;
   margin-bottom: 12px;
-  padding: 8px 0; 
+  padding: 8px 0;
   border-bottom: 1px solid #bad1e0;
 }
 
-
-.scroll_list li:first-child { 
-  border-top: 1px solid #bad1e0;  
+.scroll_list li:first-child {
+  border-top: 1px solid #bad1e0;
 }
 
 /* .scroll_list li:last-child { border-bottom: none;  }*/
+
+/*-----------------------------captain add part-----------------------------------*/
+
+.back_arrow {
+  position: absolute;
+  left: 62%;
+  top: 18%;
+  width: 30px;
+  height: 30px;
+  background-color: #bad1e0;
+  clip-path: path(
+    "M  1,5 A 1,1 0,0,1 1,4  L  7,0 A 2,2 0,0,1 7,3  L  27,3 A 3,3 0,0,1 30,6  L  30,23 A 3,3 0,0,1 27,25  L  10,25 A 2,2 0,0,1 10,21  L  25,21 A 1,1 0,0,0 26,20  L  26,8 A 1,1 0,0,0 25,7  L  7,7 A 2,2 0,0,1 7,10  Z"
+  );
+}
+
+.back_arrow_space {
+  padding-right: 50px !important;
+}
+
+.position_modal_height {
+  height: calc(100vh - 100px);
+  overflow: hidden;
+}
+
+.position_header {
+  width: 1170px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: relative;
+  background-color: rgba(123, 167, 197, 15%);
+}
+
+.position_header_right {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.position_content {
+  display: inline-flex;
+  height: 92%;
+}
+
+.position_groups {
+  list-style: none;
+  background-color: rgba(123, 167, 197, 33%);
+  width: 220px;
+  padding: 10px 0 0 0;
+  overflow-y: auto;
+}
+
+.position_group {
+  padding: 10px 20px 10px 30px;
+  cursor: pointer;
+}
+
+.position_group:hover {
+  background-color: rgba(123, 167, 197, 30%);
+}
+
+.selected_position_group {
+  background-color: rgba(123, 167, 197, 50%) !important;
+  border-right: 4px solid rgb(33, 127, 165);
+}
+
+.position_group span {
+  font-size: 1.1em;
+  font-weight: 500;
+  user-select: none;
+}
+
+.position_records {
+  flex: 1;
+  display: flex;
+  padding: 8px;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  max-height: 100%;
+  overflow-y: auto;
+  align-items: flex-start;
+}
+
+.position_record {
+  width: 240px;
+  cursor: pointer;
+  height: 110px;
+  display: block;
+  padding: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: 100ms linear;
+  border-radius: 7px;
+}
+
+.position_record p {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.position_record:hover {
+  background-color: rgba(123, 167, 197, 20%);
+}
+
+@media (max-width: 1279.95px) {
+  .position_header {
+    width: 950px;
+  }
+}
+
+@media (max-width: 1035px) {
+  .position_header {
+    width: 530px;
+  }
+}

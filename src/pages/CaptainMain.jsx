@@ -1,28 +1,26 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "../styles/CaptainMain.module.css"; // Assuming you have a CSS module for styles
 import Search from "../components/UI/Search/Search";
 import Table from "../components/UI/Table/Table";
 import Button from "../components/UI/Button/Button";
 import ModalWindow from "../components/UI/ModalWindow/ModalWindow";
-import CrewDataInput from "../components/UI/CrewDataInput/CrewDataInput";
+import DataInput from "../components/UI/DataInput/DataInput";
 import Toast from "../components/UI/Toast/Toast";
 import filter from "../components/UI/Filter/filter(1).png";
 import fetchCrew from "../functions/fetchCrew";
 import addCrew from "../functions/addCrew";
 import deleteCrew from "../functions/deleteCrew";
 
-const CaptainMain = () => {
-  const links = [
-    { path: "/", label: "Crew table" },
-    { path: "/", label: "Statistic" },
-  ];
-
+const CaptainMain = ({ links }) => {
+  // Current page state, initialized from localStorage if available
   const [page, setPage] = useState(() => {
     const memoPage = localStorage.getItem("crewPage");
     return memoPage ? Number(memoPage) : 1;
   });
 
+  // Example person data (could be used for form defaults or demo purposes)
   const [personData, setPersonData] = useState({
     position: "Third Engineer",
     first_name: "Daniel",
@@ -33,14 +31,19 @@ const CaptainMain = () => {
     status: 1,
   });
 
+  // Array of selected crew members
   const [selectedIds, setSelectedIds] = useState([]);
 
+  // Controls whether the modal window is open or closed
   const [isOpen, setIsOpen] = useState(false);
 
+  // Notification state for success/error messages (used by Toast component)
   const [notification, setNotification] = useState(null);
 
+  // React Query client instance for cache management
   const queryClient = useQueryClient();
 
+  // Fetch crew data for the current page using React Query
   const {
     data: crew,
     isLoading,
@@ -85,8 +88,18 @@ const CaptainMain = () => {
     );
   };
 
-  if (isLoading) return <h2>Loading...</h2>;
-  if (isError) return <h2>Error loading crew data</h2>;
+  if (isLoading)
+    return (
+      <div className="container">
+        <h2>Loading...</h2>
+      </div>
+    );
+  if (isError)
+    return (
+      <div className="container">
+        <h2>Error loading crew data</h2>
+      </div>
+    );
 
   return (
     <main>
@@ -103,15 +116,7 @@ const CaptainMain = () => {
               </div>
               <div className={styles.buttons}>
                 <div className={styles.search_container}>
-                  <Search
-                    name="search"
-                    type="text"
-                    placeholder="Who are you looking for?"
-                    height="49px"
-                    color="#182C3A"
-                    buttonColor="transparent"
-                    buttonBorders="1"
-                  />
+                  <Search placeholder="Who are you looking for?" />
                 </div>
                 <Button
                   className={styles.filter}
@@ -122,15 +127,17 @@ const CaptainMain = () => {
                   <img className={styles.filter_img} src={filter} alt="" />
                   Filter
                 </Button>
-                <Button
-                  className={styles.spaces}
-                  color="#678CA6"
-                  backgroundColor="transparent"
-                  buttonBorders="1"
-                  onClick={() => addCrewMutation.mutate(personData)}
-                >
-                  Add
-                </Button>
+                <Link to={links.add}>
+                  <Button
+                    className={styles.spaces}
+                    color="#678CA6"
+                    backgroundColor="transparent"
+                    buttonBorders="1"
+                    /*onClick={() => addCrewMutation.mutate(personData)}*/
+                  >
+                    Add
+                  </Button>
+                </Link>
                 <Button
                   className={styles.spaces}
                   color="#678CA6"
@@ -142,24 +149,40 @@ const CaptainMain = () => {
                 </Button>
 
                 <ModalWindow
-                  onConfirm={confirmDeleting}
                   isOpen={isOpen}
                   onClose={() => setIsOpen(false)}
+                  newStyles={styles.modal_padding}
                 >
-                  <h2 className={styles.modal_header}>Confirm deletion of the listed entries</h2>
+                  <h2 className={styles.modal_header}>
+                    Confirm deletion of the listed entries
+                  </h2>
                   <div className={styles.scroll_list}>
-                    {selectedIds.map((selected) => {
-                      const person = crew?.data?.find(
-                        (p) => p.id === selected.id,
-                      );
-                      return (
-                        <li key={selected.id}>
-                          {" "}
-                          {selected.position} {selected.first_name}{" "}
-                          {selected.last_name} {selected.date_of_birth}{" "}
-                        </li>
-                      );
-                    })}
+                    {selectedIds.length === 0 ? (
+                      <h4 className={styles.empty_message}>
+                        Please select entries to delete
+                      </h4>
+                    ) : (
+                      selectedIds.map((selected) => {
+                        const person = crew?.data?.find(
+                          (p) => p.id === selected.id,
+                        );
+                        return (
+                          <li key={selected.id}>
+                            {selected.position} {selected.first_name}
+                            {selected.last_name} {selected.date_of_birth}
+                          </li>
+                        );
+                      })
+                    )}
+                  </div>
+                  <div className="container" style={{ width: "100%" }}>
+                    <Button
+                      onClick={confirmDeleting}
+                      disabled={selectedIds.length === 0}
+                    >
+                      Confirm
+                    </Button>
+                    <Button onClick={() => setIsOpen(false)}>Cancel</Button>
                   </div>
                 </ModalWindow>
               </div>

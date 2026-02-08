@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import CaptainHeader from "../pages/CaptainHeader";
 
-const RootLayout = () => {
+const RootLayout = ({links}) => {
   return (
     <>
-      <CaptainHeader />
+      <CaptainHeader links={links} />
       <Outlet /> {/* This renders the nested route content */}
     </>
   );

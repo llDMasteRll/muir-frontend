@@ -5,7 +5,7 @@ import NavBar from "../components/UI/NavBar/NavBar";
 const Header = () => {
   const links = [
     { path: "/", label: "Home" },
-    { path: "/captain_main", label: "Captain" },
+    { path: "/captain", label: "Captain" },
     { path: "/", label: "News" },
     { path: "/", label: "Contacts" },
   ];

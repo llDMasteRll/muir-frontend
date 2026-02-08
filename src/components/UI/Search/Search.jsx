@@ -4,15 +4,15 @@ import icon from "./Search_icon(1).svg";
 import { useState } from "react";
 
 const Search = ({
-  name,
-  type,
+  name = "search",
+  type = "text",
   placeholder,
-  height,
+  height="49px",
   width,
-  color,
+  color="#182C3A",
   buttonContent,
-  buttonColor,
-  buttonBorders = 0,
+  buttonColor="transparent",
+  buttonBorders = 1,
   maxLength = 80
 }) => {
   const [value, setValue] = useState("");

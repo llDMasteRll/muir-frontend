@@ -1,6 +1,7 @@
 :root {
   --black-theme--text-color: #E9F8FF;
   --light-theme-text-color: #182c3a;
+  --light-theme-title-color: #2a3f4d;
 }
 
 * {
@@ -19,8 +20,8 @@ body{
   background-color: #F0FAFF;
 }
 
-h1, h2 {
-  color: #2a3f4d;
+h1, h2, h3, h4, p, span {
+  color: var(--light-theme-title-color);
 }
 
 h1 {
@@ -32,6 +33,17 @@ h2 {
   font-size: 2em;
   font-weight: 400;
 }
+
+h3 {
+  font-size: 1.75em;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
 
 #root {
     display: flex;

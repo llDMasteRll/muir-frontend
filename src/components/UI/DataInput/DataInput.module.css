@@ -1,0 +1,12 @@
+.data_input {
+    padding: 10px;
+    color: var(--light-theme-text-color);
+    font-size: 1em;
+    border: 1px solid #5d6d7e;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.data_input:focus {
+    outline: 1px solid #4E6F86;
+}
