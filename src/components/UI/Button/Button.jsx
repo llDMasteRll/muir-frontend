@@ -27,9 +27,9 @@ const Button = ({
       name={name}
       className={`${baseClass} ${className || ""}`} // merge classes
       style={customStyle}
+      onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onClick}
     >
       {children}
     </button>

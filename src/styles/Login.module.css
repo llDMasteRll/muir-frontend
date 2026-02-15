@@ -1,0 +1,129 @@
+/* Фон страницы */
+.loginBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../../public/images/login_background.png") no-repeat;
+  background-size: 101% 101%;
+}
+
+/* Стеклянный круг */
+.circle {
+  height: 100%;
+  max-height: 844px;
+  aspect-ratio: 1/1;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(192, 198, 226, 0.3),
+    rgba(109, 135, 165, 0.3)
+  );
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg_logo {
+  position: absolute;
+  height: 100%;
+  max-height: 844px;
+  aspect-ratio: 1/1;
+  mask: url("../../public/images/Subtract.png") no-repeat center;
+  background-color: rgba(208, 246, 255, 0.3); /* rgba(208, 234, 255, 0.3); */
+}
+
+/* Контент внутри круга поверх SVG */
+.contentWrapper {
+  height: 52%;
+  z-index: 1; /* поверх SVG */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+/* Заголовок */
+.header {
+  text-align: center;
+
+  h2 {
+    font-weight: bold;
+    font-size: 2.5em;
+    color: #355275;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.25em;
+    color: #355275;
+    margin: 0;
+  }
+}
+
+/* Форма логина */
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px; /* расстояние между полями */
+}
+
+.inputGroup {
+  position: relative;
+  width: 100%;
+}
+
+.inputGroup input {
+  width: 454px; /* подогнал под круг */
+  height: 49px;
+  padding: 10px 40px 10px 10px; /* место для кнопки глазика */
+  border-radius: 5px;
+  border: 1px solid #2f5d7c;
+  font-size: 1em;
+  outline: none;
+  color: #2f5d7c;
+  background-color: #e9f8ff;
+}
+
+.inputGroup input::placeholder {
+  color: #2f5d7c;
+}
+
+/* Кнопка Log In */
+.loginButton {
+  width: 454px;
+  height: 49px;
+  border-radius: 5px;
+  border: none;
+  background-color: #365581;
+  color: #e9f8ff;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top:22px;
+}
+
+.loginButton:hover {
+  background-color: #2d5791;
+}
+
+/* Кнопка глазика */
+.eyeButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.eyeButton img {
+  width: 24px;
+  height: 24px;
+}
