@@ -9,74 +9,58 @@
 }
 
 /* Стеклянный круг */
-.loginCircle {
-  position: relative;
-  width: 844px;
-  height: 844px;
-  border-radius: 50%;
-  /*background: rgba(255, 255, 255, 0.22)*/;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  overflow: hidden;
-}
-
-/* SVG overlay поверх круга */
-.glassIconOverlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 844px;
-  height: 844px;
-  transform: translate(-50%, -50%) rotate(9.54deg);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(15px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 0; /* позади контента */
-}
-
-.glassIconOverlay img {
-  width: 100%;
+.circle {
   height: 100%;
-  object-fit: contain;
-  transform: none;
+  max-height: 844px;
+  aspect-ratio: 1/1;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(192, 198, 226, 0.3),
+    rgba(109, 135, 165, 0.3)
+  );
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg_logo {
+  position: absolute;
+  height: 100%;
+  max-height: 844px;
+  aspect-ratio: 1/1;
+  mask: url("../../public/images/Subtract.png") no-repeat center;
+  background-color: rgba(208, 246, 255, 0.3); /* rgba(208, 234, 255, 0.3); */
 }
 
 /* Контент внутри круга поверх SVG */
 .contentWrapper {
-  position: relative;
-  height: 55%;
+  height: 52%;
   z-index: 1; /* поверх SVG */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  
+  align-items: center; 
 }
-
 
 /* Заголовок */
 .header {
   text-align: center;
-}
 
-.header h2 {
-  font-weight: bold;
-  font-size: 2.5em;
-  color: #355275;
-  margin: 0;
-}
+  h2 {
+    font-weight: bold;
+    font-size: 2.5em;
+    color: #355275;
+    margin: 0;
+  }
 
-.header p {
-  font-size: 1.25em;
-  color: #355275;
-  margin: 0;
+  p {
+    font-size: 1.25em;
+    color: #355275;
+    margin: 0;
+  }
 }
 
 /* Форма логина */
@@ -85,7 +69,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 20px; /* расстояние между полями */
+  gap: 26px; /* расстояние между полями */
 }
 
 .inputGroup {
@@ -97,8 +81,8 @@
   width: 454px; /* подогнал под круг */
   height: 49px;
   padding: 10px 40px 10px 10px; /* место для кнопки глазика */
-  border-radius: 8px;
-  border: 2px solid #2f5d7c;
+  border-radius: 5px;
+  border: 1px solid #2f5d7c;
   font-size: 1em;
   outline: none;
   color: #2f5d7c;
@@ -113,14 +97,14 @@
 .loginButton {
   width: 454px;
   height: 49px;
-  border-radius: 8px;
+  border-radius: 5px;
   border: none;
   background-color: #365581;
   color: #e9f8ff;
   font-size: 1em;
   cursor: pointer;
   transition: 0.3s;
-  margin-top:20px;
+  margin-top:22px;
 }
 
 .loginButton:hover {

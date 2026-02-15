@@ -1,0 +1,48 @@
+.sidebar {
+  width: 14vw;
+  background: #F0FAFF;
+  color: #002b3f;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #002b3f;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.list {
+  list-style: none;
+  padding-left: 12px;
+  margin-top: 8px;
+}
+
+.list li {
+  padding: 6px 0;
+  cursor: pointer;
+  opacity: 0.9;
+  color: #002b3f;
+}
+
+.list li:hover {
+  opacity: 1;
+}
+
+.arrow {
+  transition: transform 0.2s;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}

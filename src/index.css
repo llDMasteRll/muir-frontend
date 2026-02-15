@@ -1,3 +1,9 @@
+:root {
+  --muir-white-header-background: #F0FAFF;
+  --muir-black-text-color: #002b3f;
+  --muir-light-blue-background: #7ba7c526;
+}
+
 * {
     padding: 0;
     margin: 0; 
@@ -14,8 +20,8 @@ body{
   background-color: #F0FAFF;
 }
 
-h1, h2 {
-  color: #182C3A;
+h1, h2, h3, h4, p, span {
+  color: var(--light-theme-title-color);
 }
 
 h1 {
@@ -25,6 +31,16 @@ h1 {
 
 h2 {
   font-size: 2em;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.75em;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.5em;
   font-weight: 400;
 }
 
@@ -62,3 +78,4 @@ footer {
   height: 100%;
   width: 90%;
 }
+

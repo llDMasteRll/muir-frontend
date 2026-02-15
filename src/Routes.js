@@ -18,6 +18,10 @@ import CaptainLayout from "./layouts/CaptainLayout";
 import Login from "./pages/Login";
 import LoginLayout from "./layouts/LoginLayout";
 
+// Импорт ProfileMain page from "./pages/ProfileMain";
+import ProfileMain from "./pages/ProfileMain";
+import ProfileLayout from "./layouts/ProfileLayout";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +47,14 @@ const router = createBrowserRouter([
     element: <LoginLayout />,      
     children: [
       { index: true, element: <Login /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+  {
+    path: "/profile",
+    element: <ProfileLayout />,
+    children: [
+      { index: true, element: <ProfileMain /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },
