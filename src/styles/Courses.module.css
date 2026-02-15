@@ -1,0 +1,223 @@
+.ocean_background {
+  height: 200vh;
+  width: 100vw;
+  background: ();
+  background: linear-gradient(
+    to bottom,
+    #a7e9ff,
+    #6fd6ff,
+    #3bafda,
+    #0077b6,
+    #023e8a,
+    #03045e,
+    #000814,
+    #001d3d
+  );
+}
+
+.course_name {
+  margin: 40px 0 20px 0;
+  text-transform: uppercase;
+}
+
+.courses_block {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0px 6% 0 6%;
+  overflow: hidden;
+}
+
+.content_box {
+  height: 420px;
+  border-radius: 5px;
+  width: calc(23%);
+  margin: 15px;
+}
+
+/* Когда экран меньше — показываем 3 целых элемента */
+@media (max-width: 1200px) {
+  .content_box {
+    flex: 0 0 calc(33.333% - 10px);
+  }
+}
+
+/* Когда экран ещё меньше — показываем 2 */
+@media (max-width: 900px) {
+  .content_box {
+    flex: 0 0 calc(50% - 10px);
+  }
+} 
+/* На мобильных — по одному */
+@media (max-width: 600px) {
+  .content_box {
+    flex: 0 0 calc(100% - 10px);
+  }
+}
+
+.link_block {
+  text-decoration: none;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.link_block:hover .course_avatar::before {
+  opacity: 1;
+}
+
+.course_avatar {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  background: url("../../public/images/course_avatar\(325x220\).png") no-repeat;
+  background-size:  100% 100%;
+}
+
+
+.course_avatar::before {
+  display: block;
+  content: "";
+  background-image: url("../../public/images/play.png");
+  background-repeat: no-repeat;
+  background-size: 15%;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backdrop-filter: brightness(0.7);
+  opacity: 0;
+}
+
+.content_block {
+  padding: 8px;
+  background-color: #f0faff;
+}
+
+.tags {
+  display: flex;
+  --lavender: rgba(160, 192, 211, 0.65);
+  position: relative;
+  margin: 15px 0 10px 0;
+  max-height: 78px;
+  overflow-y: hidden;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tag {
+  background-color: var(--lavender); /*--lavender*/
+  padding: 5px 10px 5px 10px;
+  margin: 0 10px 10px 0;
+
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.info {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  text-wrap: nowrap;
+  margin-bottom: 20px;
+}
+
+.time {
+}
+
+.time::before {
+  content: "";
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("../../public/images/timer_sand.svg");
+}
+
+.topic {
+}
+
+.topic::before {
+  content: "";
+  position: relative;
+  top: 6px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("../../public/images/topics.svg");
+}
+
+.exam {
+}
+
+.exam::before {
+  content: "";
+  position: relative;
+  top: 6px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("../../public/images/exam.svg");
+}
+
+.arrows {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.arrow {
+  height: 55px;
+  width: 55px;
+  padding: 10px;
+}
+
+.arrow_left::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  transform: translate(-50%, -50%) rotate(135deg);
+
+  border-width: 0 4px 4px 0;
+  border-style: solid;
+  border-color: #f0faff;
+  padding: 4px;
+}
+
+.arrow_right::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+
+  border-width: 0 4px 4px 0;
+  border-style: solid;
+  border-color: #f0faff;
+  padding: 4px;
+}
+
+.water {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 100px;
+}
+
+.layer_one {
+  background-color: #88c0e0;
+}
+
+.layer_two {
+  background-color: #77a3d4;
+}
+
+.layer_three {
+  background-color: #5276a0;
+}
+
+.footer {
+  background-color: #1c2f46;
+}

@@ -4,16 +4,23 @@ import { createBrowserRouter } from "react-router-dom";
 
 // Импорт компонентов страниц
 import HomePage from "./pages/Home";
-// import CoursesPage from "./pages/CoursesPage";
 // import NewsPage from "./pages/NewsPage";
 // import ContactsPage from "./pages/ContactsPage";
 import NotFoundPage from "./pages/NotFound";
 import CaptainMainPage from "./pages/CaptainMain";
 import CaptainAdd from "./pages/CaptainAdd";
+import CoursesPage from "./pages/Courses"
+
+// Импорт Login page from "./pages/Login";
+import Login from "./pages/Login";
+import LoginLayout from "./layouts/LoginLayout";
 
 // Импорт layout (если есть)
 import RootLayout from "./layouts/RootLayout";
 import CaptainLayout from "./layouts/CaptainLayout";
+
+import ProfileMain from "./pages/ProfileMain";
+import ProfileLayout from "./layouts/ProfileLayout";
 
 const links = {
   landing: "/",
@@ -40,6 +47,23 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <CaptainMainPage links={links} /> },
       { path: "add", element: <CaptainAdd links={links} /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  }, 
+  {
+    path: "/login",
+    element: <LoginLayout />,
+    children: [
+      { index: true, element: <Login /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+  {
+    path: "/profile",
+    element: <ProfileLayout />,
+    children: [
+      { index: true, element: <ProfileMain /> },
+      { path: "courses", element: <CoursesPage links={links} /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

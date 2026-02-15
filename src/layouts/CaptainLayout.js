@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import CaptainHeader from "../pages/CaptainHeader";
 
-const RootLayout = ({links}) => {
+const CaptainLayout = ({links}) => {
   return (
     <>
       <CaptainHeader links={links} />
@@ -10,4 +10,4 @@ const RootLayout = ({links}) => {
   );
 };
 
-export default RootLayout;
+export default CaptainLayout;
