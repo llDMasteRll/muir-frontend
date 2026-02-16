@@ -3,10 +3,10 @@ import ProfileHeader from "../pages/ProfileHeader";
 import ProfileSidebar from "../pages/ProfileSidebar";
 import styles from "../styles/ProfileLayout.module.css";
 
-const RootLayout = () => {
+const RootLayout = ({ links }) => {
   return (
     <div style={{backgroundColor:"#7ba7c526", height: "100vh"}}>
-      <ProfileHeader />
+      <ProfileHeader links={{ links }} />
 
        <div className={styles.container}>
               <ProfileSidebar />

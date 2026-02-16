@@ -27,6 +27,8 @@ const links = {
   captain: "/captain",
   statistic: "./statistic", //for captain page
   add: "./add", //for captain page
+  profile: "/profile",
+  courses: "/courses",
 };
 
 const router = createBrowserRouter([
@@ -60,7 +62,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <ProfileLayout />,
+    element: <ProfileLayout links={ links } />,
     children: [
       { index: true, element: <ProfileMain /> },
       { path: "courses", element: <CoursesPage links={links} /> },

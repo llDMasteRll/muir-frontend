@@ -1,6 +1,9 @@
 import styles from "../styles/ProfileHeader.module.css";
+import { useNavigate } from "react-router-dom";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ links }) => {
+  const navigate = useNavigate();
+
   return (
     <div style = {{backgroundColor: "#F0FAFF "}}>
       <div className={styles.container}>
@@ -12,8 +15,8 @@ const ProfileHeader = () => {
                 src="/images/Muir_icon.svg"
               ></img>
             </a>
-            <a href="#">Profile</a>
-            <a href="#">Course</a>
+            <a onClick={() => navigate("/profile")} style={{cursor: "pointer"}}>Profile</a>
+            <a onClick={() => navigate("./courses")} style={{cursor: "pointer"}}>Course</a>
           </nav>
         </div>
 
