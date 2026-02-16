@@ -8,24 +8,23 @@ const Button = ({
   hoverColor,
   buttonBorders,
   borderLeft,
-  className,
-  onClick,
-  children
+  children,
+  onClick
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const customStyle = {
+    color: isHovered ? "#F0FAFF" : color,
     backgroundColor: isHovered ? hoverColor : backgroundColor,
-    color: isHovered ? "#F0FAFF" : color, // keep only one 'color'
     borderLeft,
   };
 
-  const baseClass = buttonBorders ? styles.border_button : styles.button;
+  const className = buttonBorders ? styles.border_button : styles.button;
 
   return (
     <button
       name={name}
-      className={`${baseClass} ${className || ""}`} // merge classes
+      className={className}
       style={customStyle}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}

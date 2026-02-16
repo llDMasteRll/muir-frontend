@@ -127,7 +127,7 @@ const CaptainMain = ({ links }) => {
                   <img className={styles.filter_img} src={filter} alt="" />
                   Filter
                 </Button>
-                <Link to={links.add}>
+                <Link to={links?.add || "/"}>
                   <Button
                     className={styles.spaces}
                     color="#678CA6"

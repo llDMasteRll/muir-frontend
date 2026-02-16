@@ -17,7 +17,7 @@ const Header = () => {
     <header>
       <div className="container">
         <a href="/">
-          <img style={{width: "125px", height: "40px"}} src="/images/Logo.svg"></img>
+          <img alt="muir" style={{width: "125px", height: "40px"}} src="/images/Logo.svg"></img>
         </a>
         <NavBar links={links} />
 
