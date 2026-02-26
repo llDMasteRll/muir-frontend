@@ -5,7 +5,7 @@ import styles from "../styles/ProfileLayout.module.css";
 
 const RootLayout = ({ links }) => {
   return (
-    <div style={{backgroundColor:"#7ba7c526", height: "100vh"}}>
+    <div className={styles.body}>
       <ProfileHeader links={{ links }} />
 
        <div className={styles.container}>

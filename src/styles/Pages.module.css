@@ -1,0 +1,115 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input {
+    width: 100%;
+    outline: none;
+    padding: 12px 14px;
+    width: 15vw;
+
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(0, 43, 63, 0.15);
+    color: #1f3a4a;
+
+    font-size: 1.1em;
+    border-radius: 8px;
+    text-align: start;
+    transition: 0.2s;
+}
+
+.input::placeholder {
+    color: #1f3a4a;
+    opacity: 0.8;
+}
+
+.active {
+  background: white;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+
+
+.loginButton:hover {
+    background: #3b95c7;
+}
+
+.bg-password-eye-off, .bg-password-eye-on {
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.bg-password-eye-off {
+    background: url(../../public/images/eye-off.svg);
+}
+
+.bg-password-eye-on {
+    background: url(../../public/images/eye-on.svg);
+}
+
+.passwordWrapper {
+  position: relative;
+  width: 15vw; /* ширина поля */
+}
+
+.passwordInput {
+  width: 100%;
+  padding: 12px 40px 12px 14px; /* справа 40px для иконки */
+  outline: none;
+  border: 1px solid rgba(0, 43, 63, 0.15);
+  border-radius: 8px;
+  font-size: 1.1em;
+}
+
+.eyeIcon {
+  position: absolute;
+  top:50%;
+  left: calc(100% - 37px); /* ключевой момент — справа */
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  fill: #1f3a4a;
+}
+
+.incorrect {
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    color:rgb(233, 0, 0);
+}
+
+.loginButton {
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+
+    background: #4da6d9;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.backButton {
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 23px;
+    border: none;
+    background: #d94d4d;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: 0.25s;
+}

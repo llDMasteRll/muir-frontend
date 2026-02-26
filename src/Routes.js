@@ -14,6 +14,9 @@ import CoursesPage from "./pages/Courses"
 // Импорт Login page from "./pages/Login";
 import Login from "./pages/Login";
 import LoginLayout from "./layouts/LoginLayout";
+import Crew from "./pages/Crew";
+import Company from "./pages/Company";
+import Master from "./pages/Master";
 
 // Импорт layout (если есть)
 import RootLayout from "./layouts/RootLayout";
@@ -57,6 +60,30 @@ const router = createBrowserRouter([
     element: <LoginLayout />,
     children: [
       { index: true, element: <Login /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+  {
+    path: "/login/company",
+    element: <LoginLayout />,
+    children: [
+      { index: true, element: <Company /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+  {
+    path: "/login/master",
+    element: <LoginLayout />,
+    children: [
+      { index: true, element: <Master /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+  {
+    path: "/login/crew",
+    element: <LoginLayout />,
+    children: [
+      { index: true, element: <Crew /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

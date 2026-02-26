@@ -5,6 +5,26 @@
   align-items: center;
   height: 7vh;
   width: 90%;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    background-image: url("../../public/images/Muir_icon.svg");
+    background-color: white;
+    border-radius: 50%;
+    background-size: 102% 102%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
 }
 
 .leftSide, .rightSide {

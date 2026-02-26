@@ -1,129 +1,118 @@
-/* Фон страницы */
 .loginBody {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: url("../../public/images/login_background.png") no-repeat;
-  background-size: 101% 101%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../../public/images/login_background.png") no-repeat;
+    background-size: cover cover;
+    background-position-x: 15%; 
+    background-position-y: center;
 }
 
-/* Стеклянный круг */
-.circle {
-  height: 100%;
-  max-height: 844px;
-  aspect-ratio: 1/1;
-  background-color: transparent;
-  backdrop-filter: blur(20px);
-  background-image: linear-gradient(
-    to bottom,
-    rgba(192, 198, 226, 0.3),
-    rgba(109, 135, 165, 0.3)
-  );
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.h2 {
+    text-align: center;
+    color: #1f3a4a;
+    margin-bottom: 22px;
 }
 
-.bg_logo {
-  position: absolute;
-  height: 100%;
-  max-height: 844px;
-  aspect-ratio: 1/1;
-  mask: url("../../public/images/Subtract.png") no-repeat center;
-  background-color: rgba(208, 246, 255, 0.3); /* rgba(208, 234, 255, 0.3); */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+    color: #1f3a4a;
+    border: 1px solid rgba(255,255,255,0.4);
+
+    overflow: hidden;
 }
 
-/* Контент внутри круга поверх SVG */
-.contentWrapper {
-  height: 52%;
-  z-index: 1; /* поверх SVG */
+.redirectButton {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: center; 
-}
-
-/* Заголовок */
-.header {
-  text-align: center;
-
-  h2 {
-    font-weight: bold;
-    font-size: 2.5em;
-    color: #355275;
-    margin: 0;
-  }
-
-  p {
-    font-size: 1.25em;
-    color: #355275;
-    margin: 0;
-  }
-}
-
-/* Форма логина */
-.formWrapper {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 26px; /* расстояние между полями */
-}
 
-.inputGroup {
-  position: relative;
-  width: 100%;
-}
+  padding: 10px 14px;
+  width: 15vw;
 
-.inputGroup input {
-  width: 454px; /* подогнал под круг */
-  height: 49px;
-  padding: 10px 40px 10px 10px; /* место для кнопки глазика */
-  border-radius: 5px;
-  border: 1px solid #2f5d7c;
-  font-size: 1em;
-  outline: none;
-  color: #2f5d7c;
-  background-color: #e9f8ff;
-}
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0, 43, 63, 0.15);
+  color: #1f3a4a;
 
-.inputGroup input::placeholder {
-  color: #2f5d7c;
-}
-
-/* Кнопка Log In */
-.loginButton {
-  width: 454px;
-  height: 49px;
-  border-radius: 5px;
-  border: none;
-  background-color: #365581;
-  color: #e9f8ff;
-  font-size: 1em;
+  font-size: 1.1em;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
-  margin-top:22px;
+  text-align: start;
+  transition: 0.2s;
+}
+
+.redirectButton:hover {
+  background: white;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.icons {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.icon1 {
+  background-image: url("../../public/images/company_icon.svg");
+  background-size: 230% 230%;
+  background-position: center center;
+}
+
+.icon2 {
+  background-image: url("../../public/images/master_icon.svg");
+  background-size: 150% 150%;
+  background-position: center center;
+}
+
+.icon3 {
+  background-image: url("../../public/images/crew_icon.svg");
+  background-size: 115% 115%;
+  background-position: center center;
+}
+
+.loginButton {
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+
+    background: #4da6d9;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
 .loginButton:hover {
-  background-color: #2d5791;
+    background: #3b95c7;
 }
 
-/* Кнопка глазика */
-.eyeButton {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+/* Анимация ухода влево */
+.slideLeft {
+    animation: slideLeftAnim 0.5s forwards;
 }
 
-.eyeButton img {
-  width: 24px;
-  height: 24px;
+@keyframes slideLeftAnim {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }

@@ -8,35 +8,201 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .bar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  width: 100%;
 }
 
 .avatar {
-  width: 230px;
-  height: 230px;
+  min-width: 155px;
+  height: 155px;
   border-radius: 50%;
-  background-color: var(--muir-black-text-color);
-  margin-right: 20px;
+  background: url("../../public/images/testavatar.png") no-repeat;
+  background-size: 100% 100%;
+  margin-right: 50px;
 }
 
-.mainInfo {
+.row {
   display: flex;
-  align-items: end;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
+}
+
+.rows {
+  display: flex;
   flex-direction: column;
-  color: #002b3f;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 30px;
 }
 
-.Info {
-  margin-top: 30px;
-  color: var(--muir-black-text-color);
+.row p:nth-child(1) {
+  width: 150px;
+  font-size: 1.25em;
+  font-weight: bold;
 }
 
-.Info * {
-  margin-bottom: 10px;
+.row p:nth-child(2) {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.25em;
+}
+
+.h2 {
+  font-size: 2em;
+  margin-top: 25px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.courses_block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.content_box {
+  height: 420px;
+  border-radius: 5px;
+  margin: 15px;
+}
+
+/* Когда экран меньше — показываем 3 целых элемента */
+@media (max-width: 1200px) {
+  .content_box {
+    flex: 0 0 calc(33.333% - 10px);
+  }
+}
+
+/* Когда экран ещё меньше — показываем 2 */
+@media (max-width: 900px) {
+  .content_box {
+    flex: 0 0 calc(50% - 10px);
+  }
+} 
+/* На мобильных — по одному */
+@media (max-width: 600px) {
+  .content_box {
+    flex: 0 0 calc(100% - 10px);
+  }
+}
+
+.link_block {
+  text-decoration: none;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.link_block:hover .course_avatar::before {
+  opacity: 1;
+}
+
+.course_avatar {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  background: url("../../public/images/course_avatar\(325x220\).png") no-repeat;
+  background-size:  100% 100%;
+}
+
+.course_avatar::before {
+  display: block;
+  content: "";
+  background-image: url("../../public/images/play.png");
+  background-repeat: no-repeat;
+  background-size: 15%;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backdrop-filter: brightness(0.7);
+  opacity: 0;
+}
+
+.content_block {
+  padding: 8px;
+  background-color: #f0faff;
+}
+
+.tags {
+  display: flex;
+  --lavender: rgba(160, 192, 211, 0.65);
+  position: relative;
+  margin: 15px 0 10px 0;
+  max-height: 78px;
+  overflow-y: hidden;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tag {
+  background-color: var(--lavender); /*--lavender*/
+  padding: 5px 10px 5px 10px;
+  margin: 0 10px 10px 0;
+
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.info {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  text-wrap: nowrap;
+  margin-bottom: 20px;
+}
+
+.time {
+}
+
+.time::before {
+  content: "";
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("../../public/images/timer_sand.svg");
+}
+
+.topic {
+}
+
+.topic::before {
+  content: "";
+  position: relative;
+  top: 6px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("../../public/images/topics.svg");
+}
+
+.exam {
+}
+
+.exam::before {
+  content: "";
+  position: relative;
+  top: 6px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("../../public/images/exam.svg");
 }
