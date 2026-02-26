@@ -21,10 +21,10 @@ const ProfileSidebar = () => {
 
         {accountOpen && (
           <ul className={styles.list}>
-            <li>main</li>
-            <li>statistic</li>
-            <li>certificates</li>
-            <li>my courses</li>
+            <li>Main</li>
+            <li>Statistic</li>
+            <li>Certificates</li>
+            <li>My courses</li>
           </ul>
         )}
       </div>
@@ -43,11 +43,11 @@ const ProfileSidebar = () => {
 
         {settingsOpen && (
           <ul className={styles.list}>
-            <li>security</li>
-            <li>theme</li>
-            <li>devices</li>
-            <li>notifications</li>
-            <li>language</li>
+            <li>Security</li>
+            <li>Theme</li>
+            <li>Devices</li>
+            <li>Notifications</li>
+            <li>Language</li>
           </ul>
         )}
       </div>

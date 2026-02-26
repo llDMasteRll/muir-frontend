@@ -5,16 +5,11 @@ const ProfileHeader = ({ links }) => {
   const navigate = useNavigate();
 
   return (
-    <div style = {{backgroundColor: "#F0FAFF "}}>
+    <div className={styles.header}>
       <div className={styles.container}>
         <div className={styles.leftSide}>
           <nav>
-            <a href="/" style = {{height: "45px"}}>
-              <img
-                style={{ width: "55px", height: "100%" }}
-                src="/images/Muir_icon.svg"
-              ></img>
-            </a>
+            <div className={styles.logo} onClick={() => navigate("/")}></div>
             <a onClick={() => navigate("/profile")} style={{cursor: "pointer"}}>Profile</a>
             <a onClick={() => navigate("./courses")} style={{cursor: "pointer"}}>Course</a>
           </nav>
