@@ -7,6 +7,8 @@ const Search = ({
   name = "search",
   type = "text",
   placeholder,
+  onChange,
+  value,
   height="49px",
   width,
   color="#182C3A",
@@ -15,7 +17,6 @@ const Search = ({
   buttonBorders = 1,
   maxLength = 80
 }) => {
-  const [value, setValue] = useState("");
   console.log(value);
   return (
     <div className={styles.search} style={{ height, width }}>
@@ -26,7 +27,7 @@ const Search = ({
         maxLength={maxLength}
         style={{ color }}
         value={value}
-        onChange={event => setValue(event.target.value)}
+        onChange={e => onChange(e.target.value)}
       />
       <Button
         borderLeft="0"

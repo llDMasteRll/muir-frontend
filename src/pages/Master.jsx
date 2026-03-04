@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/Pages.module.css";
 import { useNavigate } from "react-router-dom";
+import masterLogin from "../functions/masterLogin";
 
 const Master = () => {
   const navigate = useNavigate();
@@ -10,16 +11,15 @@ const Master = () => {
   const [error, setError] = useState(false); // одно общее для всех полей
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      email === "ship@maersk.com" &&
-      Ucode === "123"
-    ) {
-      navigate("/profile");
+    const token = await masterLogin({ ship_email: email, ship_key: Ucode });
+
+    if (token) {
+      navigate("/master");
     } else {
-      setError(true); // если хоть одно поле неверно, всё красное
+      setError(true);
     }
   };
 
@@ -32,7 +32,6 @@ const Master = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-
       <input
         type="text"
         value={email}
@@ -56,13 +55,18 @@ const Master = () => {
         />
       </div>
 
-      <button type = "button" onClick={() => navigate("/login")} className={styles.backButton}>
+      <button
+        type="button"
+        onClick={() => navigate("/login")}
+        className={styles.backButton}
+      >
         Back
       </button>
 
-      <button type = "submit" className={styles.loginButton}>
+      <button type="submit" className={styles.loginButton}>
         Continue
       </button>
+      {error && <p style={{ color: "rgb(233, 0, 0)" }}>Incorrect login or password</p>}
     </form>
   );
 };

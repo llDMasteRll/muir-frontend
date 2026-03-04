@@ -1,7 +1,9 @@
 import axios from "axios";
 
 async function fetchCrew(page) {
-  const response = await axios.get("http://localhost:3030/positions");
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  const response = await axios.get(`${apiUrl}/positions`);
   return response.data;
 }
 

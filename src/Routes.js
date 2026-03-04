@@ -1,6 +1,7 @@
 // routes.js
 import React, { useMemo } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
 // Импорт компонентов страниц
 import HomePage from "./pages/Home";
@@ -27,7 +28,7 @@ import ProfileLayout from "./layouts/ProfileLayout";
 
 const links = {
   landing: "/",
-  captain: "/captain",
+  captain: "/master",
   statistic: "./statistic", //for captain page
   add: "./add", //for captain page
   profile: "/profile",
@@ -47,49 +48,36 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/captain",
-    element: <CaptainLayout links={links} />,
+    path: "/master",
+    element: (
+      <ProtectedRoute redirect={"/login"} allowedRoles={["master"]}>
+        <CaptainLayout links={links} />
+      </ProtectedRoute>
+    ),
     children: [
       { index: true, element: <CaptainMainPage links={links} /> },
       { path: "add", element: <CaptainAdd links={links} /> },
       { path: "*", element: <NotFoundPage /> },
     ],
-  }, 
+  },
   {
     path: "/login",
     element: <LoginLayout />,
     children: [
       { index: true, element: <Login /> },
-      { path: "*", element: <NotFoundPage /> },
-    ],
-  },
-  {
-    path: "/login/company",
-    element: <LoginLayout />,
-    children: [
-      { index: true, element: <Company /> },
-      { path: "*", element: <NotFoundPage /> },
-    ],
-  },
-  {
-    path: "/login/master",
-    element: <LoginLayout />,
-    children: [
-      { index: true, element: <Master /> },
-      { path: "*", element: <NotFoundPage /> },
-    ],
-  },
-  {
-    path: "/login/crew",
-    element: <LoginLayout />,
-    children: [
-      { index: true, element: <Crew /> },
+      { path: "company", element: <Company /> },
+      { path: "master", element: <Master /> },
+      { path: "crew", element: <Crew /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },
   {
     path: "/profile",
-    element: <ProfileLayout links={ links } />,
+    element: (
+      <ProtectedRoute redirect={"/login"} allowedRoles={["crew"]}>
+        <ProfileLayout links={links} />
+      </ProtectedRoute>
+    ),
     children: [
       { index: true, element: <ProfileMain /> },
       { path: "courses", element: <CoursesPage links={links} /> },

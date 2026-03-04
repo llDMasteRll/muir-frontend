@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/Pages.module.css";
 import { useNavigate } from "react-router-dom";
+import workerLogin from "../functions/workerLogin";
 
 const Crew = () => {
   const navigate = useNavigate();
@@ -11,16 +12,15 @@ const Crew = () => {
   const [error, setError] = useState(false); // одно общее для всех полей
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
 
-    if (
-      fullname === "Denys Popov" &&
-      password === "01011970"
-    ) {
+    const token = await workerLogin({ username: fullname, password });
+
+    if (token) {
       navigate("/profile");
     } else {
-      setError(true); // если хоть одно поле неверно, всё красное
+      setError(true);
     }
   };
 
@@ -33,7 +33,6 @@ const Crew = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-
       <input
         type="text"
         value={fullname}
@@ -57,13 +56,18 @@ const Crew = () => {
         />
       </div>
 
-      <button type = "button" onClick={() => navigate("/login")} className={styles.backButton}>
+      <button
+        type="button"
+        onClick={() => navigate("/login")}
+        className={styles.backButton}
+      >
         Back
       </button>
 
-      <button type = "submit" className={styles.loginButton}>
+       <button type="submit" className={styles.loginButton}>
         Continue
       </button>
+      {error && <p style={{ color: "rgb(233, 0, 0)" }}>Incorrect login or password</p>}
     </form>
   );
 };

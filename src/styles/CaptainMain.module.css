@@ -225,6 +225,12 @@
   background-color: rgba(123, 167, 197, 20%);
 }
 
+.nodata {
+  display: flex;
+  justify-content: center;
+  margin-top: 40vh;
+}
+
 @media (max-width: 1279.95px) {
   .position_header {
     width: 950px;

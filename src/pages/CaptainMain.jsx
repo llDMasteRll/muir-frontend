@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "../styles/CaptainMain.module.css"; // Assuming you have a CSS module for styles
@@ -14,22 +14,19 @@ import addCrew from "../functions/addCrew";
 import deleteCrew from "../functions/deleteCrew";
 
 const CaptainMain = ({ links }) => {
+  const itemsPerPage = 10;
+
   // Current page state, initialized from localStorage if available
   const [page, setPage] = useState(() => {
-    const memoPage = localStorage.getItem("crewPage");
-    return memoPage ? Number(memoPage) : 1;
+    try {
+      const memoPage = localStorage.getItem("crewPage");
+      return memoPage ? Number(memoPage) : 1;
+    } catch (e) {
+      return 1;
+    }
   });
 
-  // Example person data (could be used for form defaults or demo purposes)
-  const [personData, setPersonData] = useState({
-    position: "Third Engineer",
-    first_name: "Daniel",
-    last_name: "Lewis",
-    date_of_birth: "1990-06-30",
-    sign_on_date: "2022-09-05",
-    sign_off_date: "2023-10-12",
-    status: 1,
-  });
+  const [searchQuery, setSearchQuery] = useState();
 
   // Array of selected crew members
   const [selectedIds, setSelectedIds] = useState([]);
@@ -45,17 +42,41 @@ const CaptainMain = ({ links }) => {
 
   // Fetch crew data for the current page using React Query
   const {
-    data: crew,
+    data: crew = [],
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["crew", page],
-    queryFn: () => {
-      localStorage.setItem("crewPage", page);
-      return fetchCrew(page);
-    },
+    queryKey: ["crew"],
+    queryFn: fetchCrew,
     keepPreviousData: true,
   });
+
+  const filteredCrew = useMemo(() => {
+  if (!Array.isArray(crew)) return [];
+
+    const query = searchQuery?.toLowerCase().trim() || "";
+    if (!query) return crew;
+
+    return crew.filter(
+      (person) =>
+        person.first_name?.toLowerCase().includes(query) ||
+        person.last_name?.toLowerCase().includes(query) ||
+        person.position?.toLowerCase().includes(query) ||
+        person.date_of_birth?.includes(query),
+    );
+  }, [crew, searchQuery]);
+
+  const visibleCrew = useMemo(() => {
+    const start = (page - 1) * itemsPerPage;
+    return filteredCrew.slice(start, start + itemsPerPage);
+  }, [filteredCrew, page]);
+
+  const totalPages = Math.ceil(filteredCrew.length / itemsPerPage) || 1;
+
+  const handleSearchChange = (val) => {
+    setSearchQuery(val);
+    setPage(1); // Return to the first page when searching
+  };
 
   const addCrewMutation = useMutation({
     mutationFn: addCrew,
@@ -88,15 +109,19 @@ const CaptainMain = ({ links }) => {
     );
   };
 
+  useEffect(() => {
+    localStorage.setItem("crewPage", page);
+  }, [page]);
+
   if (isLoading)
     return (
-      <div className="container">
+      <div className={styles.nodata}>
         <h2>Loading...</h2>
       </div>
     );
   if (isError)
     return (
-      <div className="container">
+      <div className={styles.nodata}>
         <h2>Error loading crew data</h2>
       </div>
     );
@@ -116,7 +141,11 @@ const CaptainMain = ({ links }) => {
               </div>
               <div className={styles.buttons}>
                 <div className={styles.search_container}>
-                  <Search placeholder="Who are you looking for?" />
+                  <Search
+                    placeholder="Who are you looking for?"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                  />
                 </div>
                 <Button
                   className={styles.filter}
@@ -187,9 +216,10 @@ const CaptainMain = ({ links }) => {
                 </ModalWindow>
               </div>
             </div>
-            {crew.pages > 0 ? (
+            {filteredCrew.length > 0 ? (
               <Table
-                data={crew}
+                data={visibleCrew}
+                totalPages={totalPages}
                 page={page}
                 setPage={setPage}
                 selectedIds={selectedIds} // передаём массив

@@ -4,16 +4,21 @@ import CheckBox from "../CheckBox/CheckBox";
 import Button from "../Button/Button";
 import { ReactComponent as Edit } from "./Edit.svg";
 
-const Table = ({ data, page, setPage, selectedIds, setSelectedIds }) => {
+const Table = ({
+  data,
+  totalPages,
+  page,
+  setPage,
+  selectedIds,
+  setSelectedIds,
+}) => {
   const [inputPage, setInputPage] = useState(page);
 
   useEffect(() => {
     setInputPage(page);
   }, [page]);
 
-
-  if (!Array.isArray(data.data)) {
-    console.log("data is not an array:", data.data);
+  if (!Array.isArray(data)) {
     return <div>Loading...</div>;
   }
 
@@ -22,28 +27,29 @@ const Table = ({ data, page, setPage, selectedIds, setSelectedIds }) => {
   };
 
   const nextPage = () => {
-    if (page < data.pages) setPage(page + 1);
+    if (page < totalPages) setPage(page + 1);
   };
 
-  const item = (index) => page > 1 ? String((page - 1) * 10 + (index + 1)) : String(index + 1);
-
+  const getIndex = (index) => (page - 1) * 10 + (index + 1);
+  
   const commitValue = () => {
     const currPage = Number(inputPage);
-    if (!Number.isNaN(currPage) && currPage > 0) {
+    if (!Number.isNaN(currPage) && currPage > 0 && currPage <= totalPages) {
       setPage(currPage);
     } else {
-      setInputPage(String(page));
+      setInputPage(page); 
     }
   };
 
-
   const toggleSelectedPerson = (newPerson) => {
-    const newId = newPerson.id;
-    console.log(selectedIds)
     setSelectedIds((arr) => 
-       arr.some(p => p.id === newId) ? arr.filter(p => p.id != newId) : [...arr, newPerson]
+      arr.some(p => p.id === newPerson.id) 
+        ? arr.filter(p => p.id !== newPerson.id) 
+        : [...arr, newPerson]
     );
   };
+
+  const formatDate = (date) => new Date(date).toISOString().slice(0, 10);
 
   return (
     <div className={styles.Table}>
@@ -78,42 +84,32 @@ const Table = ({ data, page, setPage, selectedIds, setSelectedIds }) => {
             </tr>
           </thead>
           <tbody>
-            {data.data.map((person, index) => (
+                        {data.map((person, index) => (
               <tr key={person.id}>
                 <td>
-                  <CheckBox
-                    checked={selectedIds.some(p => p.id === person.id)}
-                    onChange={() => toggleSelectedPerson(person)}
+                  <CheckBox 
+                    checked={selectedIds.some(p => p.id === person.id)} 
+                    onChange={() => toggleSelectedPerson(person)} 
                   />
                 </td>
-                <td>{item(index)}</td>
+                <td>{getIndex(index)}</td> {/* Порядковый номер */}
                 <td>{person.position}</td>
                 <td>{person.first_name}</td>
                 <td>{person.last_name}</td>
-                <td>{person.date_of_birth}</td>
-                <td>{person.sign_on_date}</td>
-                <td>{person.sign_off_date}</td>
+                <td>{formatDate(person.date_of_birth)}</td>
+                <td>{formatDate(person.sign_on_date)}</td>
+                <td>{formatDate(person.sign_off_date)}</td>
                 <td style={{ textAlign: "center" }}>
-                  {person.status ? (
-                    <Button backgroundColor="#61B665" hoverColor="#6CCD71">
-                      On board
-                    </Button>
-                  ) : (
-                    <Button backgroundColor="#B8081D" hoverColor="#D10E26">
-                      Off board
-                    </Button>
-                  )}
+                   <Button backgroundColor={person.status ? "#61B665" : "#B8081D"}>
+                      {person.status ? "On board" : "Off board"}
+                   </Button>
                 </td>
                 <td style={{ textAlign: "center" }}>
                   <Button>View profile</Button>
                 </td>
-                {person.status ? (
-                  <td style={{ textAlign: "right" }}>
-                    <Edit className={styles.edit} />
-                  </td>
-                ) : (
-                  <td></td>
-                )}
+                <td style={{ textAlign: "right" }}>
+                   {person.status && <Edit className={styles.edit} />}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -123,22 +119,15 @@ const Table = ({ data, page, setPage, selectedIds, setSelectedIds }) => {
         <Button onClick={() => setPage(1)}>&laquo;</Button>
         <Button onClick={prevPage}>&lt;</Button>
         <input
-          maxLength={3}
-          className={styles.curent_page}
-          value={inputPage}
-          onChange={(e) => {
-            if (e.target.value > data.pages) setInputPage(data.pages);
-            else setInputPage(e.target.value);
-          }}
+          maxLength={3} 
+          className={styles.curent_page} 
+          value={inputPage} 
+          onChange={(e) => setInputPage(e.target.value)} 
           onBlur={commitValue}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              commitValue();
-            }
-          }}
+          onKeyDown={(e) => e.key === "Enter" && commitValue()}
         />
         <Button onClick={nextPage}>&gt;</Button>
-        <Button onClick={() => setPage(data.pages)}>&raquo;</Button>
+        <Button onClick={() => setPage(totalPages)}>&raquo;</Button>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
-import axios from "axios";
+import api from "./API";
 
-export default async function addCrew(data) {
-  const response = await axios.post("http://localhost:3030/crew", {
+async function addCrew(data) {
+
+  const response = await api.post("/crew", {
     position: data.position,
     first_name: data.first_name,
     last_name: data.last_name,
@@ -12,3 +13,5 @@ export default async function addCrew(data) {
   });
   return response.data;
 }
+
+export default addCrew;
