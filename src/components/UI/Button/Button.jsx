@@ -3,29 +3,19 @@ import styles from "./Button.module.css";
 
 const Button = ({
   name,
-  color,
-  backgroundColor,
-  hoverColor,
-  buttonBorders,
-  borderLeft,
+  className,
+  borderedButton, // Set true if you need a button with transparent background
   children,
   onClick
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const customStyle = {
-    color: isHovered ? "#F0FAFF" : color,
-    backgroundColor: isHovered ? hoverColor : backgroundColor,
-    borderLeft,
-  };
-
-  const className = buttonBorders ? styles.border_button : styles.button;
+  const style = borderedButton ? styles.border_button : styles.button;
 
   return (
     <button
       name={name}
-      className={className}
-      style={customStyle}
+      className={`${style} ${className}`}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

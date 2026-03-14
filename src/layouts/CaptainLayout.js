@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import CaptainHeader from "../pages/CaptainHeader";
+import CaptainHeader from "../pages/MasterHeader";
 
 const CaptainLayout = ({links}) => {
   return (

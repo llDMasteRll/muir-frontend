@@ -15,7 +15,8 @@
   height: 100%;
   font-size: 1em;
   max-height: 49px;
-  background-color: #678CA6;
+  background-color: transparent;
+  color: #678CA6;
   border: 1px solid #5d6d7e;
   padding: 11px 30px;
   border-radius: 5px;
@@ -29,4 +30,8 @@
 .button:hover,
 .border_button:hover {
   background-color: #4E6F86;
+}
+
+.border_button:hover {
+  color: #F0FAFF;
 }

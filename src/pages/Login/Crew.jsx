@@ -1,7 +1,7 @@
 import { useState } from "react";
-import styles from "../styles/Pages.module.css";
+import styles from "../../styles/Pages.module.css";
 import { useNavigate } from "react-router-dom";
-import workerLogin from "../functions/workerLogin";
+import workerLogin from "../../functions/workerLogin";
 
 const Crew = () => {
   const navigate = useNavigate();

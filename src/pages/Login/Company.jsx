@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "../styles/Pages.module.css";
+import styles from "../../styles/Pages.module.css";
 import { useNavigate } from "react-router-dom";
 
 const Company = () => {

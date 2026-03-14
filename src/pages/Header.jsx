@@ -3,12 +3,12 @@ import Button from "../components/UI/Button/Button";
 import Search from "../components/UI/Search/Search";
 import NavBar from "../components/UI/NavBar/NavBar";
 
-const Header = () => {
+const Header = ({links}) => {
 
   const navigate = useNavigate();
-  const links = [
+  const routes = [
     { path: "/", label: "Home" },
-    { path: "/captain", label: "Captain" },
+    { path: links.master, label: "Captain" },
     { path: "/", label: "News" },
     { path: "/", label: "Contacts" },
   ];
@@ -19,9 +19,9 @@ const Header = () => {
         <a href="/">
           <img alt="muir" style={{width: "125px", height: "40px"}} src="/images/Logo.svg"></img>
         </a>
-        <NavBar links={links} />
+        <NavBar links={routes} />
 
-        <Search name="search" type="text" placeholder="Search" buttonContent="Ok"/>
+        <Search name="search" type="text" placeholder="Search"/>
 
         <Button name="login" onClick={() => navigate("/login")}>Log in</Button>
       </div>
