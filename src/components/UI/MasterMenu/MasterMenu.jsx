@@ -4,6 +4,7 @@ import Search from "../Search/Search";
 import Button from "../Button/Button";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import filter from "../Filter/filter(1).png";
+import formatDate from "../../../functions/formatDate";
 
 const MasterMenu = ({
   links,
@@ -16,7 +17,7 @@ const MasterMenu = ({
 }) => {
   return (
     <div className={styles.menu}>
-      <div className={styles.tabs}>        
+      <div className={styles.tabs}>
         <div className={styles.tab}>Dashboard</div>
         <div className={`${styles.tab} ${styles.active}`}>Crew list</div>
         <div className={styles.tab}>Statistic</div>
@@ -67,8 +68,8 @@ const MasterMenu = ({
             ) : (
               selectedIds.map((selected) => (
                 <li key={selected.id}>
-                  {selected.position} {selected.first_name} {selected.last_name}{" "}
-                  {selected.date_of_birth}
+                  {selected.position_name} {selected.full_name}{" "}
+                  {formatDate(selected.date_of_birth)}
                 </li>
               ))
             )}

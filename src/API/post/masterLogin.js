@@ -1,4 +1,4 @@
-import api from "./API";
+import api from "../API";
 
 const masterLogin = async ({ ship_email, ship_key }) => {
     try {

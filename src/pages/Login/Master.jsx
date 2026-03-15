@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../../styles/Pages.module.css";
 import { useNavigate } from "react-router-dom";
-import masterLogin from "../../functions/masterLogin";
+import masterLogin from "../../API/post/masterLogin";
 
 const Master = () => {
   const navigate = useNavigate();

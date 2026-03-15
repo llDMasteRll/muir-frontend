@@ -125,3 +125,30 @@ button.on_board:hover {
 button.off_board:hover {
   background-color: #d1071f;
 }
+.modal_padding {
+  padding: 30px;
+}
+
+.modal_header {
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.date_input {
+  display: block;
+  margin: 20px auto;       
+  padding: 10px 15px;      
+  width: 60%;              
+  max-width: 300px;        
+  border: 1px solid #ccc;  
+  border-radius: 6px;      
+  font-size: 16px;         
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.date_input:focus {
+  border-color: #7eaccc;   
+  box-shadow: 0 0 6px rgba(74,144,226,0.4);
+  outline: none;
+}

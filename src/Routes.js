@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/master",
+    path: "master",
     element: (
       <ProtectedRoute redirect={"/login"} allowedRoles={["master"]}>
         <CaptainLayout links={links} />
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: "login",
     element: <LoginLayout />,
     children: [
       { index: true, element: <Login /> },
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/profile",
+    path: "profile",
     element: (
       <ProtectedRoute redirect={"/login"} allowedRoles={["crew"]}>
         <ProfileLayout links={links} />

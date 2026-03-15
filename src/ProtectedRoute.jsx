@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { isTokenExpired, getUserRole } from "./functions/auth";
+import { isTokenExpired, getUserRole } from "./API/auth";
 
 const ProtectedRoute = ({ children, redirect, allowedRoles }) => {
     const token = localStorage.getItem("accessToken")

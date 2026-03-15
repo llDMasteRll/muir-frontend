@@ -1,52 +1,84 @@
-import { use, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// React/routing
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// styles
 import styles from "../styles/MasterMain.module.css";
+
+// UI
 import Button from "../components/UI/Button/Button";
 import DataInput from "../components/UI/DataInput/DataInput";
 import ModalWindow from "../components/UI/ModalWindow/ModalWindow";
 import Search from "../components/UI/Search/Search";
-import addCrew from "../functions/addCrew";
-import fetchPositions from "../functions/fetchPositions";
-import fetchPositionGroups from "../functions/fetchPositionGroups";
+
+// API
+import addCrew from "../API/post/addCrew";
+import fetchPositions from "../API/get/fetchPositions";
+import fetchPositionGroups from "../API/get/fetchPositionGroups";
 
 const MasterAdd = ({ links }) => {
+  // ==================== NAVIGATION ====================
+
+  const navigate = useNavigate();
+
+  // ==================== STATE ====================
+
+  // Controls position selection modal
   const [isOpen, setIsOpen] = useState(false);
+
+  // Groups of positions (for example: Deck, Engine, etc.)
   const [positionGroups, setPositionGroups] = useState([]);
+
+  // List of available positions
   const [positions, setPositions] = useState([{ id: "1", position: "Master" }]);
-  const [active, setActive] = useState(true);
+
+  // Active position group index (used for switching tabs)
+  const [active, setActive] = useState(0);
+
+  // Crew records that will be added
   const [records, setRecords] = useState([
     {
       id: Date.now(),
-      first_name: "",
-      last_name: "",
+      full_name: "",
       date_of_birth: "",
       sign_on_date: "",
       position_id: "",
       position: "",
     },
   ]);
+
+  // Stores calculated button positions (used for dropdown/modal UI)
   const [buttonPositions, setButtonPositions] = useState([]);
+
+  // Currently selected record for position choosing
   const [selectedRecordId, setSelectedRecordId] = useState(null);
+
+  // Validation errors for each record
   const [errors, setErrors] = useState({});
+
+  // ==================== RECORD MANAGEMENT ====================
 
   const addRecord = () => {
     setRecords([
       ...records,
       {
         id: Date.now(),
-        first_name: "",
-        last_name: "",
+        full_name: "",
         date_of_birth: "",
         sign_on_date: "",
         position_id: "",
       },
     ]);
   };
+
   const removeRecord = (id) => {
     if (records.length === 1) return;
     setRecords(records.filter((record) => record.id !== id));
   };
 
+  // ==================== INPUT HANDLING ====================
+
+  // Update specific field in a specific record
   const handleChange = (id, field, value) => {
     setRecords(
       records.map((record) =>
@@ -55,6 +87,8 @@ const MasterAdd = ({ links }) => {
     );
   };
 
+  // ==================== FORM SUBMIT ====================
+
   const handleSubmit = async () => {
     const newErrors = {};
     let hasError = false;
@@ -62,8 +96,8 @@ const MasterAdd = ({ links }) => {
     records.forEach((record) => {
       const recordErrors = {};
 
-      if (!record.first_name.trim()) {
-        recordErrors.first_name = true;
+      if (!record.full_name.trim()) {
+        recordErrors.full_name = true;
         hasError = true;
       }
       if (!record.position_id) {
@@ -86,35 +120,44 @@ const MasterAdd = ({ links }) => {
 
     setErrors(newErrors);
 
-    if (hasError) return; 
+    if (hasError) return;
 
     for (const record of records) {
       await addCrew(record);
     }
+
+    navigate(links.master);
   };
 
-const choosePosition = (position_id, position) => {
-  setRecords(
-    records.map((record) =>
-      record.id === selectedRecordId
-        ? { ...record, position_id, position }
-        : record,
-    ),
-  );
+  // ==================== POSITION SELECTION ====================
 
-  setErrors((prevErrors) => {
-    const newErrors = { ...prevErrors };
-    if (newErrors[selectedRecordId]) {
-      delete newErrors[selectedRecordId].position_id;
-      if (Object.keys(newErrors[selectedRecordId]).length === 0) {
-        delete newErrors[selectedRecordId];
+  const choosePosition = (position_id, position) => {
+    setRecords(
+      records.map((record) =>
+        record.id === selectedRecordId
+          ? { ...record, position_id, position }
+          : record,
+      ),
+    );
+
+    // Remove position validation error for this record
+    setErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+
+      if (newErrors[selectedRecordId]) {
+        delete newErrors[selectedRecordId].position_id;
+        if (Object.keys(newErrors[selectedRecordId]).length === 0) {
+          delete newErrors[selectedRecordId];
+        }
       }
-    }
-    return newErrors;
-  });
 
-  setIsOpen(false);
-};
+      return newErrors;
+    });
+
+    setIsOpen(false);
+  };
+
+  // ==================== DATA LOADING ====================
 
   useEffect(() => {
     async function loadPositionGroups() {
@@ -130,6 +173,8 @@ const choosePosition = (position_id, position) => {
     loadPositionGroups();
     loadPositions();
   }, []);
+
+  // ==================== RENDER ====================
 
   return (
     <main>
@@ -149,7 +194,7 @@ const choosePosition = (position_id, position) => {
           <ul className={styles.position_groups}>
             <div
               key={0}
-              className={`${styles.position_group} ${styles.selected_position_group}`}
+              className={`${styles.position_group} ${active === 0 ? styles.selected_position_group : ""}`}
               onClick={() => setActive(0)}
             >
               <span>All</span>
@@ -209,13 +254,14 @@ const choosePosition = (position_id, position) => {
                   <td>
                     <DataInput
                       placeholder="Full Name"
-                      value={record.first_name}
+                      value={record.full_name}
                       onChange={(e) =>
-                        handleChange(record.id, "first_name", e.target.value)
+                        handleChange(record.id, "full_name", e.target.value)
                       }
-                      className={
-                        errors[record.id]?.first_name ? styles.error_input : ""
-                      }
+                      className={`
+                        ${styles.date_input}
+                        ${errors[record.id]?.full_name ? styles.error_input : ""}
+                      `}
                     />
                   </td>
                   <td>
@@ -238,11 +284,14 @@ const choosePosition = (position_id, position) => {
                       onChange={(e) =>
                         handleChange(record.id, "date_of_birth", e.target.value)
                       }
-                      className={
-                        errors[record.id]?.date_of_birth
-                          ? styles.error_input
-                          : ""
-                      }
+                      className={`
+                        ${styles.date_input}
+                        ${
+                          errors[record.id]?.date_of_birth
+                            ? styles.error_input
+                            : ""
+                        }
+                      `}
                     />
                   </td>
                   <td>
@@ -252,11 +301,14 @@ const choosePosition = (position_id, position) => {
                       onChange={(e) =>
                         handleChange(record.id, "sign_on_date", e.target.value)
                       }
-                      className={
-                        errors[record.id]?.sign_on_date
-                          ? styles.error_input
-                          : ""
-                      }
+                      className={`
+                        ${styles.date_input}
+                        ${
+                          errors[record.id]?.sign_on_date
+                            ? styles.error_input
+                            : ""
+                        }
+                      `}
                     />
                   </td>
                   <td>
