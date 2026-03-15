@@ -1,10 +1,10 @@
-import React from 'react';
+import styles from "../styles/NotFound.module.css";
 
 const NotFound = () => {
     return (
-        <>
-            <h1>404 NOT FOUND</h1>
-        </>
+        <div className={styles.container}>
+            <div className={styles.pic}></div>
+        </div>
     );
 };
 

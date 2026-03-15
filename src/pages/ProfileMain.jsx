@@ -1,3 +1,4 @@
+import CourseCard from "../components/UI/CourseCard/CourseCard";
 import styles from "../styles/ProfileMain.module.css";
 
 const ProfileMain = () => {
@@ -18,7 +19,7 @@ const ProfileMain = () => {
             </div>
 
             <div className={styles.textBlock}>
-              <p>Sign in date</p>
+              <p>Sign on</p>
               <p>25.10.2025</p>
             </div>
           </div>
@@ -35,7 +36,7 @@ const ProfileMain = () => {
             </div>
 
             <div className={styles.textBlock}>
-              <p>Sign off date</p>
+              <p>Sign off</p>
               <p>24.02.2026</p>
             </div>
           </div>
@@ -44,65 +45,13 @@ const ProfileMain = () => {
 
       <h2 className={styles.h2}> Recently viewed courses </h2>
 
-    <div className={styles.courses_block}>
-      <div className={styles.content_box}>
-        <a className={styles.link_block} href="">
-          <div className={styles.course_avatar}></div>
-          <div className={styles.content_block}>
-            <h3>Navigation</h3>
-            <div className={styles.tags}>
-              <span className={styles.tag}>#Position</span>
-              <span className={styles.tag}>#Position</span>
-              <span className={styles.tag}>#Position</span>
-            </div>
-            <div className={styles.info}>
-              <span className={styles.time}>16h 43m</span>
-              <span className={styles.topic}>8 topics</span>
-              <span className={styles.exam}>1 exam</span>
-            </div>
-          </div>
-        </a>
+      <div style={{display: "flex"}}>
+        <CourseCard/>
+        <CourseCard/>
+        <CourseCard/>
       </div>
+      
 
-      <div className={styles.content_box}>
-        <a className={styles.link_block} href="">
-          <div className={styles.course_avatar}></div>
-          <div className={styles.content_block}>
-            <h3>Navigation</h3>
-            <div className={styles.tags}>
-              <span className={styles.tag}>#Position</span>
-              <span className={styles.tag}>#Position</span>
-              <span className={styles.tag}>#Position</span>
-            </div>
-            <div className={styles.info}>
-              <span className={styles.time}>16h 43m</span>
-              <span className={styles.topic}>8 topics</span>
-              <span className={styles.exam}>1 exam</span>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div className={styles.content_box}>
-        <a className={styles.link_block} href="">
-          <div className={styles.course_avatar}></div>
-          <div className={styles.content_block}>
-            <h3>Navigation</h3>
-            <div className={styles.tags}>
-              <span className={styles.tag}>#Position</span>
-              <span className={styles.tag}>#Position</span>
-              <span className={styles.tag}>#Position</span>
-            </div>
-            <div className={styles.info}>
-              <span className={styles.time}>16h 43m</span>
-              <span className={styles.topic}>8 topics</span>
-              <span className={styles.exam}>1 exam</span>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      </div>
     </div>
   );
 };

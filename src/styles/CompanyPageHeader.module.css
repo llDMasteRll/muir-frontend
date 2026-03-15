@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+    padding: 22px 30px;
+
+    background: url("../../public/images/company_header.png") no-repeat;
+    background-size: 100%;
+    background-position-y: 17%;
+
+    border-bottom:1px solid rgba(0,0,0,0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.user {
+    display: flex;
+
+    gap:40px;
+}
+
+.notification, .profile {
+    width: 35px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+}
+
+.notification {
+    -webkit-mask-image: url("../../public/images/bell-outline.svg");
+    mask-image: url("../../public/images/bell-outline.svg");
+}
+
+.profile {
+    -webkit-mask-image: url("../../public/images/account-circle.svg");
+    mask-image: url("../../public/images/account-circle.svg");
+}

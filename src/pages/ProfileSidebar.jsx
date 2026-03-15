@@ -21,7 +21,8 @@ const ProfileSidebar = () => {
 
         {accountOpen && (
           <ul className={styles.list}>
-            <li>Main</li>
+            <li>Profile</li>
+            <li>Courses</li>
             <li>Statistic</li>
             <li>Certificates</li>
             <li>My courses</li>

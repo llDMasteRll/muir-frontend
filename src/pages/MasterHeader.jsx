@@ -7,9 +7,9 @@ const MasterHeader = ({ links }) => {
     name: "Ship1372",
     email: "ship1372@email.com",
   };
-
+// style={{ backgroundColor: "#F0FAFF" }}
   return (
-    <header style={{ backgroundColor: "#F0FAFF" }}>
+    <header>
       <div className={`container ${styles.underscore}`}>
         <h1 className="ship_name">{data.name}</h1>
         <div className={styles.buttons}>

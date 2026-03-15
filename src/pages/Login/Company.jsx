@@ -17,7 +17,7 @@ const Company = () => {
       email === "maersk@muireolais.com" &&
       Ucode === "123"
     ) {
-      navigate("/profile");
+      navigate("/company/vessels");
     } else {
       setError(true); // если хоть одно поле неверно, всё красное
     }

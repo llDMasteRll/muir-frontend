@@ -26,6 +26,10 @@ import CaptainLayout from "./layouts/CaptainLayout";
 import ProfileMain from "./pages/ProfileMain";
 import ProfileLayout from "./layouts/ProfileLayout";
 
+import CompanyPageVessels from "./pages/CompanyPageVessels";
+import CompanyDashboard from "./pages/CompanyDashboard"
+import CompanyLayout from "./layouts/CompanyLayout";
+
 const links = {
   landing: "/",
   master: "/master",
@@ -44,7 +48,6 @@ const router = createBrowserRouter([
       //   { path: "courses", element: <CoursesPage /> },
       //   { path: "news", element: <NewsPage /> },
       //   { path: "contacts", element: <ContactsPage /> },
-      { path: "*", element: <NotFoundPage /> }, // fallback
     ],
   },
   {
@@ -57,7 +60,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <CaptainMainPage links={links} /> },
       { path: "add", element: <CaptainAdd links={links} /> },
-      { path: "*", element: <NotFoundPage /> },
     ],
   },
   {
@@ -68,7 +70,6 @@ const router = createBrowserRouter([
       { path: "company", element: <Company /> },
       { path: "master", element: <Master /> },
       { path: "crew", element: <Crew /> },
-      { path: "*", element: <NotFoundPage /> },
     ],
   },
   {
@@ -80,9 +81,21 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <ProfileMain /> },
-      { path: "courses", element: <CoursesPage links={links} /> },
-      { path: "*", element: <NotFoundPage /> },
+      { path: "courses", element: <CoursesPage /> },
     ],
+  },
+  {
+    path: "company",
+    element: <CompanyLayout />,
+    children: [
+      { index: true, element: "" },
+      { path: "vessels", element: <CompanyPageVessels /> },
+      { path: "dashboard", element: <CompanyDashboard /> },
+    ],
+  },
+  { 
+    path: "*", 
+    element: <NotFoundPage /> 
   },
 ]);
 
