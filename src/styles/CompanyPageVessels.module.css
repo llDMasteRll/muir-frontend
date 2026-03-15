@@ -1,0 +1,228 @@
+.container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ===== Header ===== */
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.vesselCards {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.vessel {
+  position: relative;
+  width: 350px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.vessel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.vesselPicture {
+  height: 60%;
+  width: 100%;
+  background: url("../../public/images/test_vessel.jpg") no-repeat 100%/100%;
+  border-radius: 14px 14px 0 0;
+}
+
+.name {
+  font-family: "Inter", "Roboto", "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.25em;
+  color: #1a1a1a;
+
+  margin-left: 5%;
+  margin-top: 10px;
+}
+
+.meta {
+  font-family: "Inter", "Roboto", "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  color: #666;
+
+  margin-left: 5%;
+  margin-top: 10px;
+}
+
+.Buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 21px;
+}
+
+.Button {
+  width: 40%;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.Button:nth-child(1) {
+  background-color: #3a86ff;
+}
+
+.Button:nth-child(2) {
+  background-color: #22c55e;
+}
+
+.Button:nth-child(1):hover {
+  background-color: #195c73;
+}
+
+.Button:nth-child(2):hover {
+  background-color: #256f47;
+}
+
+/* ===== Progress block ===== */
+
+.progressBlock {
+  width: 100%;
+  padding: 0 20px 20px 20px;
+  box-sizing: border-box;
+}
+
+.progressBar {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #ef4444 0%, #f59e0b 50%, #22c55e 100%);
+}
+
+.progressText {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.vessel:hover .progressFill {
+  background: linear-gradient(90deg, #ff0000 0%, #fbbf24 50%, #22c55e 100%);
+}
+
+/* ===== Add Vessel Button ===== */
+
+.addVessel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(90deg, rgba(111, 148, 232, 1) 0%, rgba(50, 99, 191, 1) 100%);
+
+  width: 190px;
+  height: 55px;
+
+  font-size: 1.25em;
+  color: white;
+
+  border: none;
+  border-radius: 22px;
+
+  cursor: pointer;
+  gap: 10px;
+}
+
+.addVessel::before {
+  content: '+';
+  font-size: 2em;
+  font-weight: 200;
+  height: 40px;
+  align-self: flex-start;
+}
+
+.addVessel:hover {
+  filter: brightness(1.15) saturate(1.2);
+}
+
+/* ===== Search Bar ===== */
+
+.search {
+  display: flex;
+  align-items: center;
+
+  width: 420px;
+  height: 55px;
+
+  background: white;
+  border-radius: 40px;
+
+  padding: 0 18px;
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: 0.25s;
+}
+
+.search:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 10px;
+  font-family: "Inter", "Roboto", "Poppins", sans-serif;
+  color: black;
+}
+
+.search input::placeholder {
+  color: #999;
+}
+
+.icon {
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+.mic {
+  font-size: 18px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mic:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}

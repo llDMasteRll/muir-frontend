@@ -5,13 +5,12 @@ const ProfileHeader = ({ links }) => {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.header}>
       <div className={styles.container}>
         <div className={styles.leftSide}>
           <nav>
             <div className={styles.logo} onClick={() => navigate("/")}></div>
             <a onClick={() => navigate("/profile")} style={{cursor: "pointer"}}>Profile</a>
-            <a onClick={() => navigate("./courses")} style={{cursor: "pointer"}}>Course</a>
+            <a onClick={() => navigate("/profile/courses")} style={{cursor: "pointer"}}>Courses</a>
           </nav>
         </div>
 
@@ -22,7 +21,6 @@ const ProfileHeader = ({ links }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

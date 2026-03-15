@@ -19,10 +19,6 @@
     font-family: "Inter", sans-serif;
 }
 
-body{
-  background-color: #F0FAFF;
-}
-
 h1, h2, h3, h4, p, span {
   color: var(--light-theme-title-color);
 }

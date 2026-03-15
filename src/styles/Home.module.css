@@ -19,8 +19,9 @@
 }
 
 .p {
+  color: #E9F8FF;
   margin-top: 100px;
-  width: 40vw;
+  width: 50vw;
   font-size: 2em;
   font-weight: 400;
   text-wrap: wrap;

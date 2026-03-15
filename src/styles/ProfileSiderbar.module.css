@@ -1,7 +1,7 @@
 .sidebar {
   width: 14vw;
   color: #002b3f;
-  padding: 16px;
+  padding: 16px 16px 0px 16px;
 
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(10px);
@@ -9,6 +9,8 @@
 
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  margin-bottom: 25px;
 }
 
 .section {

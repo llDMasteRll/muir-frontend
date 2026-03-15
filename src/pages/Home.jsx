@@ -6,12 +6,11 @@ const Home = () => {
       <div className="container">
         <div>
           <h2 className={styles.h2}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit
+            MuirEolais — guiding professionals through the ocean of knowledge
           </h2>
 
           <p className={styles.p}>
-            Quas libero quos, error magni assumenda explicabo est amet pariatur
-            vel eius impedit atque vero
+            A professional training platform enhancing the competence, safety awareness, and knowledge base of maritime personnel
           </p>
         </div>
       </div>

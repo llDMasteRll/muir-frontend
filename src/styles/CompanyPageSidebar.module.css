@@ -1,0 +1,107 @@
+.container{
+    width:220px;
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    background:linear-gradient(
+        180deg,
+        #315f9a 0%,
+        #244c83 40%,
+        #1b3d6d 100%
+    );
+
+    position: sticky;
+    top: 0;
+}
+
+
+.logoBlock {
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+    background: rgba(0, 10, 73, 0.2);
+    z-index: 2;
+}
+
+.NavLinks {
+    padding: 0px 20px;
+}
+
+.logo{
+    width:60px;
+    height:60px;
+
+    background-image:url("../../public/images/Muir_icon.svg");
+    background-size:cover;
+    background-position:center;
+
+    border-radius:50%;
+
+    cursor:pointer;
+}
+
+/* кнопки */
+
+.sideRefs{
+    position:relative;
+
+    width: 100%;
+
+    display:flex;
+    align-items:center;
+
+    margin-bottom:14px;
+    padding:16px 18px;
+
+    background:transparent;
+    border:none;
+    border-radius:8px;
+
+    color:white;
+    cursor:pointer;
+
+    transition: 0.2s;
+
+    font-size: 0.875em;
+}
+
+.sideRefs::before{
+    content:"";
+
+    position:absolute;
+    left:-12px;
+    top:50%;
+
+    width:4px;
+    height:0;
+
+    background:white;
+    border-radius:3px;
+
+    transform:translateY(-50%);
+}
+
+.sideRefs.active::before{
+    height:60%;
+}
+
+
+.sideRefs:hover{
+    background:rgba(255,255,255,0.12);
+    transform:translateX(4px);
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.active{
+    background:linear-gradient(
+        90deg,
+        rgba(255,255,255,0.25),
+        rgba(255,255,255,0.08)
+    );
+}

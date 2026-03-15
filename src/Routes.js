@@ -9,7 +9,7 @@ import HomePage from "./pages/Home";
 import NotFoundPage from "./pages/NotFound";
 import CaptainMainPage from "./pages/CaptainMain";
 import CaptainAdd from "./pages/CaptainAdd";
-import CoursesPage from "./pages/Courses"
+import CoursesPage from "./pages/Courses.jsx";
 
 // Импорт Login page from "./pages/Login";
 import Login from "./pages/Login";
@@ -24,6 +24,10 @@ import CaptainLayout from "./layouts/CaptainLayout";
 
 import ProfileMain from "./pages/ProfileMain";
 import ProfileLayout from "./layouts/ProfileLayout";
+
+import CompanyPageVessels from "./pages/CompanyPageVessels";
+import CompanyDashboard from "./pages/CompanyDashboard"
+import CompanyLayout from "./layouts/CompanyLayout";
 
 const links = {
   landing: "/",
@@ -43,7 +47,6 @@ const router = createBrowserRouter([
       //   { path: "courses", element: <CoursesPage /> },
       //   { path: "news", element: <NewsPage /> },
       //   { path: "contacts", element: <ContactsPage /> },
-      { path: "*", element: <NotFoundPage /> }, // fallback
     ],
   },
   {
@@ -52,49 +55,38 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <CaptainMainPage links={links} /> },
       { path: "add", element: <CaptainAdd links={links} /> },
-      { path: "*", element: <NotFoundPage /> },
     ],
-  }, 
+  },
   {
-    path: "/login",
+    path: "login",
     element: <LoginLayout />,
     children: [
       { index: true, element: <Login /> },
-      { path: "*", element: <NotFoundPage /> },
-    ],
-  },
-  {
-    path: "/login/company",
-    element: <LoginLayout />,
-    children: [
-      { index: true, element: <Company /> },
-      { path: "*", element: <NotFoundPage /> },
-    ],
-  },
-  {
-    path: "/login/master",
-    element: <LoginLayout />,
-    children: [
-      { index: true, element: <Master /> },
-      { path: "*", element: <NotFoundPage /> },
-    ],
-  },
-  {
-    path: "/login/crew",
-    element: <LoginLayout />,
-    children: [
-      { index: true, element: <Crew /> },
-      { path: "*", element: <NotFoundPage /> },
+      { path: "company", element: <Company /> },
+      { path: "master", element: <Master /> },
+      { path: "crew", element: <Crew /> },
     ],
   },
   {
     path: "/profile",
-    element: <ProfileLayout links={ links } />,
+    element: <ProfileLayout />,
     children: [
       { index: true, element: <ProfileMain /> },
-      { path: "courses", element: <CoursesPage links={links} /> },
-      { path: "*", element: <NotFoundPage /> },
+      { path: "courses", element: <CoursesPage /> },
     ],
+  },
+  {
+    path: "company",
+    element: <CompanyLayout />,
+    children: [
+      { index: true, element: "" },
+      { path: "vessels", element: <CompanyPageVessels /> },
+      { path: "dashboard", element: <CompanyDashboard /> },
+    ],
+  },
+  { 
+    path: "*", 
+    element: <NotFoundPage /> 
   },
 ]);
 
