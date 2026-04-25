@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./Table.module.css";
 import CheckBox from "../CheckBox/CheckBox";
 import Button from "../Button/Button";
-import DataInput from "../DataInput/DataInput";
+import DataInput from "../Input/DataInput";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import formatDate from "../../../functions/formatDate";
 import { ReactComponent as Edit } from "./Edit.svg";

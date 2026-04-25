@@ -7,7 +7,7 @@ import styles from "../styles/MasterMain.module.css";
 
 // UI
 import Button from "../components/UI/Button/Button";
-import DataInput from "../components/UI/DataInput/DataInput";
+import DataInput from "../components/UI/Input/DataInput";
 import ModalWindow from "../components/UI/ModalWindow/ModalWindow";
 import Search from "../components/UI/Search/Search";
 
@@ -281,9 +281,14 @@ const MasterAdd = ({ links }) => {
                       type="date"
                       max={new Date().toISOString().split("T")[0]}
                       value={record.date_of_birth}
-                      onChange={(e) =>
-                        handleChange(record.id, "date_of_birth", e.target.value)
-                      }
+                      onChange={(e) => {
+                        const [year, month, day] = e.target.value.split("-");
+                        handleChange(
+                          record.id,
+                          "date_of_birth",
+                          `${day}.${month}.${year}`,
+                        );
+                      }}
                       className={`
                         ${styles.date_input}
                         ${
@@ -298,9 +303,14 @@ const MasterAdd = ({ links }) => {
                     <DataInput
                       type="date"
                       value={record.sign_on_date}
-                      onChange={(e) =>
-                        handleChange(record.id, "sign_on_date", e.target.value)
-                      }
+                      onChange={(e) => {
+                        const [year, month, day] = e.target.value.split("-");
+                        handleChange(
+                          record.id,
+                          "date_of_birth",
+                          `${day}.${month}.${year}`,
+                        );
+                      }}
                       className={`
                         ${styles.date_input}
                         ${

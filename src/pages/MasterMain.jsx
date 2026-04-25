@@ -166,7 +166,7 @@ const MasterMain = ({ links }) => {
   });
 
   const changeStatusMutation = useMutation({
-    mutationFn: ({ worker_id, status }) => changeBoardStatus(worker_id, status),
+    mutationFn: ({ worker_id, date, status }) => changeBoardStatus(worker_id, date, status),
 
     onSuccess: () => {
       queryClient.invalidateQueries(["crew"]);
@@ -205,10 +205,10 @@ const MasterMain = ({ links }) => {
                 selectedIds={selectedIds}
                 confirmDeleting={confirmDeleting}
               />
-              <div className={styles.nodata}>
+              {/* <div className={styles.nodata}>
                 <h2>Loading...</h2>
-              </div>
-{/* 
+              </div> */}
+
               <Table
                 filteredCrew={filteredCrew}
                 data={visibleCrew}
@@ -218,7 +218,7 @@ const MasterMain = ({ links }) => {
                 selectedIds={selectedIds}
                 setSelectedIds={setSelectedIds}
                 changeStatusMutation={changeStatusMutation}
-              /> */}
+              />
             </div>
           </div>
         </div>
@@ -242,10 +242,10 @@ const MasterMain = ({ links }) => {
                 selectedIds={selectedIds}
                 confirmDeleting={confirmDeleting}
               />
-              <div className={styles.nodata}>
+              {/* <div className={styles.nodata}>
                 <h2>Can't load crew data</h2>
-              </div>
-              {/* <Table
+              </div> */}
+              <Table
                 filteredCrew={filteredCrew}
                 data={visibleCrew}
                 totalPages={totalPages}
@@ -254,7 +254,7 @@ const MasterMain = ({ links }) => {
                 selectedIds={selectedIds}
                 setSelectedIds={setSelectedIds}
                 changeStatusMutation={changeStatusMutation}
-              /> */}
+              />
             </div>
           </div>
         </div>

@@ -53,9 +53,9 @@ const router = createBrowserRouter([
   {
     path: "master",
     element: (
-      <ProtectedRoute redirect={"/login"} allowedRoles={["master"]}>
+      // <ProtectedRoute redirect={"/login"} allowedRoles={["master"]}>
         <CaptainLayout links={links} />
-      </ProtectedRoute>
+      // </ProtectedRoute>
     ),
     children: [
       { index: true, element: <CaptainMainPage links={links} /> },

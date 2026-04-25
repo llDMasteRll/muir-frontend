@@ -19,7 +19,6 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-
     // если accessToken истёк
     if (
       error.response?.status === 403 &&
