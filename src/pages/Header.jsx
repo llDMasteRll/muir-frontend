@@ -8,7 +8,6 @@ const Header = () => {
   const navigate = useNavigate();
   const links = [
     { path: "/", label: "Home" },
-    { path: "/captain", label: "Captain" },
     { path: "/", label: "News" },
     { path: "/", label: "Contacts" },
   ];
