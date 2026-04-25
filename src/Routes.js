@@ -1,22 +1,23 @@
 // routes.js
 import React, { useMemo } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
 // Импорт компонентов страниц
 import HomePage from "./pages/Home";
 // import NewsPage from "./pages/NewsPage";
 // import ContactsPage from "./pages/ContactsPage";
 import NotFoundPage from "./pages/NotFound";
-import CaptainMainPage from "./pages/CaptainMain";
-import CaptainAdd from "./pages/CaptainAdd";
-import CoursesPage from "./pages/Courses.jsx";
+import CaptainMainPage from "./pages/MasterMain";
+import CaptainAdd from "./pages/MasterAdd";
+import CoursesPage from "./pages/Courses"
 
 // Импорт Login page from "./pages/Login";
 import Login from "./pages/Login";
 import LoginLayout from "./layouts/LoginLayout";
-import Crew from "./pages/Crew";
-import Company from "./pages/Company";
-import Master from "./pages/Master";
+import Crew from "./pages/Login/Crew";
+import Company from "./pages/Login/Company";
+import Master from "./pages/Login/Master";
 
 // Импорт layout (если есть)
 import RootLayout from "./layouts/RootLayout";
@@ -38,7 +39,7 @@ import CompanyLayout from "./layouts/CompanyLayout";
 
 const links = {
   landing: "/",
-  captain: "/captain",
+  master: "/master",
   statistic: "./statistic", //for captain page
   add: "./add", //for captain page
   profile: "/profile",
@@ -48,7 +49,7 @@ const links = {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />, // общий layout с header/footer
+    element: <RootLayout links={links} />, // общий layout с header/footer
     children: [
       { index: true, element: <HomePage /> },
       //   { path: "courses", element: <CoursesPage /> },
@@ -57,8 +58,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/captain",
-    element: <CaptainLayout links={links} />,
+    path: "master",
+    element: (
+      <ProtectedRoute redirect={"/login"} allowedRoles={["master"]}>
+        <CaptainLayout links={links} />
+      </ProtectedRoute>
+    ),
     children: [
       { index: true, element: <CaptainMainPage links={links} /> },
       { path: "add", element: <CaptainAdd links={links} /> },
@@ -75,8 +80,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/profile",
-    element: <ProfileLayout />,
+    path: "profile",
+    element: (
+      <ProtectedRoute redirect={"/login"} allowedRoles={["crew"]}>
+        <ProfileLayout links={links} />
+      </ProtectedRoute>
+    ),
     children: [
       { index: true, element: <ProfileMain /> },
       { path: "courses", element: <CoursesPage /> },

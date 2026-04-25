@@ -1,7 +1,3 @@
-.main {
-  margin-top: 8%;
-}
-
 .content {
   width: 100%;
   margin-top: 135px;
@@ -10,113 +6,10 @@
   justify-content: space-between;
 }
 
-.search_container {
+.nodata {
   display: flex;
-  justify-content: right;
-}
-
-.menu {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  width: 55%;
-  margin-right: 2%;
-  gap: 10px;
-}
-
-.spaces {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.tabs {
-  display: block;
-}
-
-.tab {
-  width: 100%;
-  all: unset;
-  font-size: 2em;
-  font-weight: 400;
-  text-wrap: nowrap;
-  color: rgba(103, 140, 166, 50%);
-  margin-right: 30px;
-  padding: 0 5px;
-}
-
-.tab:hover {
-  color: rgb(103, 140, 166);
-  cursor: pointer;
-}
-
-.active {
-  color: rgb(103, 140, 166);
-  border-bottom: solid 1px rgb(103, 140, 166);
-}
-.filter {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 8px;
-}
-
-.filter:hover img {
-  filter: brightness(0) saturate(100%) invert(80%) sepia(100%)
-    hue-rotate(180deg);
-}
-
-.filter_img {
-  width: 25px;
-  height: 25px;
-  color: #678ca6;
-  border-radius: 5px;
-}
-
-.without_data {
-  width: 90vw;
-  height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #5a6e7d;
-  background-color: rgba(192, 200, 204, 0.1);
-  border: 5px solid transparent;
-  border-radius: 5px;
-  box-shadow: 0 0 15px rgba(192, 200, 204, 0.1);
-}
-
-.modal_padding {
-  padding: 30px;
-}
-
-.modal_header {
-  text-align: center;
-  text-wrap: nowrap;
-}
-
-.scroll_list {
-  max-height: 255px;
-  overflow-y: auto;
-  margin: 20px 0;
-  padding-right: 8px;
-}
-
-.scroll_list li {
-  font-size: 1.2em;
-  color: #2a3f4d;
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 8px 0;
-  border-bottom: 1px solid #bad1e0;
-}
-
-.scroll_list li:first-child {
-  border-top: 1px solid #bad1e0;
+  margin-top: 25vh;
 }
 
 /* .scroll_list li:last-child { border-bottom: none;  }*/
@@ -141,11 +34,12 @@
 
 .position_modal_height {
   height: calc(100vh - 100px);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .position_header {
-  width: 1170px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -161,14 +55,16 @@
 }
 
 .position_content {
-  display: inline-flex;
-  height: 92%;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
 
 .position_groups {
   list-style: none;
   background-color: rgba(123, 167, 197, 33%);
   width: 220px;
+  flex-shrink: 0;
   padding: 10px 0 0 0;
   overflow-y: auto;
 }
@@ -202,6 +98,8 @@
   max-height: 100%;
   overflow-y: auto;
   align-items: flex-start;
+  min-width: 0;
+  min-height: 0;
 }
 
 .position_record {
@@ -225,14 +123,71 @@
   background-color: rgba(123, 167, 197, 20%);
 }
 
-@media (max-width: 1279.95px) {
-  .position_header {
-    width: 950px;
-  }
+.input_row {
+  gap: 20px;
 }
 
-@media (max-width: 1035px) {
-  .position_header {
-    width: 530px;
-  }
+.add_record {
+  justify-self: flex-end;
+  align-self: flex-end;
+  margin: 1vh 3vw 1vw 0;
+}
+
+.add_table th,
+.add_table td {
+  text-align: left;
+  color: #182c3a;
+  padding: 1vh 3vw 1vw 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.remove_btn {
+  color: #bd2135 !important;
+  border-color: #bd2135 !important;
+}
+.remove_btn:hover {
+  color: #f0faff !important;
+  background-color: #bd2135 !important;
+}
+
+.position_button {
+  min-width: 120px;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.error_input {
+  border-color: #bd2135 !important;
+}
+
+.error_input:focus {
+  outline: transparent !important;
+  border-color: #bd2135 !important;
+  box-shadow: 0 0 6px rgba(189, 33, 53, 0.4) !important;
+  outline: none;
+}
+
+button.error_button {
+  border-color: #bd2135;
+}
+
+.date_input {
+  padding: 10px 15px;
+  border: 1px solid #5d6d7e;
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.date_input:focus {
+  border-color: #7eaccc;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+  outline: none;
 }

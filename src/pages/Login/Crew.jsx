@@ -1,25 +1,26 @@
 import { useState } from "react";
-import styles from "../styles/Pages.module.css";
+import styles from "../../styles/Pages.module.css";
 import { useNavigate } from "react-router-dom";
+import workerLogin from "../../API/post/workerLogin";
 
-const Master = () => {
+const Crew = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [Ucode, setUcode] = useState("");
+  const [company, setCompany] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(false); // одно общее для всех полей
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
 
-    if (
-      email === "ship@maersk.com" &&
-      Ucode === "123"
-    ) {
+    const token = await workerLogin({ username: fullname, password });
+
+    if (token) {
       navigate("/profile");
     } else {
-      setError(true); // если хоть одно поле неверно, всё красное
+      setError(true);
     }
   };
 
@@ -32,21 +33,20 @@ const Master = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-
       <input
         type="text"
-        value={email}
-        onChange={handleInputChange(setEmail)}
-        placeholder="Ship email"
+        value={fullname}
+        onChange={handleInputChange(setFullname)}
+        placeholder="Full Name"
         className={inputClass}
       />
 
       <div className={styles.passwordWrapper}>
         <input
           type={showPassword ? "text" : "password"}
-          value={Ucode}
-          onChange={handleInputChange(setUcode)}
-          placeholder="Unique code"
+          value={password}
+          onChange={handleInputChange(setPassword)}
+          placeholder="Password"
           className={`${styles.passwordInput} ${inputClass}`}
         />
 
@@ -56,15 +56,20 @@ const Master = () => {
         />
       </div>
 
-      <button type = "button" onClick={() => navigate("/login")} className={styles.backButton}>
+      <button
+        type="button"
+        onClick={() => navigate("/login")}
+        className={styles.backButton}
+      >
         Back
       </button>
 
-      <button type = "submit" className={styles.loginButton}>
+       <button type="submit" className={styles.loginButton}>
         Continue
       </button>
+      {error && <p style={{ color: "rgb(233, 0, 0)" }}>Incorrect login or password</p>}
     </form>
   );
 };
 
-export default Master;
+export default Crew;

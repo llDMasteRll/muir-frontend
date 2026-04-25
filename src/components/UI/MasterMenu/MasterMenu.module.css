@@ -1,0 +1,97 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+
+.tabs {
+  display: block;
+}
+
+.tab {
+  width: 100%;
+  all: unset;
+  font-size: 2em;
+  font-weight: 400;
+  text-wrap: nowrap;
+  color: rgba(103, 140, 166, 50%);
+  margin-right: 30px;
+  padding: 0 5px;
+}
+
+.tab:hover {
+  color: rgb(103, 140, 166);
+  cursor: pointer;
+}
+
+.active {
+  color: rgb(103, 140, 166);
+  border-bottom: solid 1px rgb(103, 140, 166);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+  margin-right: 2%;
+  gap: 10px;
+}
+
+.search_container {
+  display: flex;
+  justify-content: right;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.filter:hover img {
+  filter: brightness(0) saturate(100%) invert(80%) sepia(100%)
+    hue-rotate(180deg);
+}
+
+.filter_img {
+  width: 25px;
+  height: 25px;
+  color: #678ca6;
+  border-radius: 5px;
+}
+
+.spaces {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.modal_padding {
+  padding: 30px;
+}
+
+.modal_header {
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.scroll_list {
+  max-height: 255px;
+  overflow-y: auto;
+  margin: 20px 0;
+  padding-right: 8px;
+}
+
+.scroll_list li {
+  font-size: 1.2em;
+  color: #2a3f4d;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #bad1e0;
+}
+
+.scroll_list li:first-child {
+  border-top: 1px solid #bad1e0;
+}
