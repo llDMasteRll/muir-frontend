@@ -1,14 +1,135 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    position: relative;
+.page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Inter", "Roboto", "Poppins", sans-serif;
 }
 
-.pic {
-    width: 60%;
-    height: 100%;
-    background: url("../../public/images/NotFound.png") no-repeat 100%/100%;
+/* ===== FULLSCREEN IMAGE ===== */
+
+.bg {
+  position: absolute;
+  inset: 0;
+
+  background: url("../../public/images/NotFoundBetter.png") no-repeat center;
+  background-size: cover;
+
+  /* мягкий zoom */
+  transform: scale(1);
+
+  /* затемнение для читаемости текста */
+  filter: brightness(0.85);
+}
+
+/* затемняющий слой */
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 30, 70, 0.35) 0%,
+      rgba(10, 30, 70, 0.55) 100%
+    );
+}
+
+/* ===== CONTENT ===== */
+
+.overlay {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 20px;
+}
+
+/* small label */
+.kicker {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 16px;
+}
+
+/* title */
+.title {
+  font-size: clamp(36px, 4vw, 64px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin: 0;
+
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* text */
+.text {
+  margin-top: 18px;
+  max-width: 620px;
+
+  font-size: 18px;
+  line-height: 1.6;
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== BUTTONS ===== */
+
+.actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryButton,
+.secondaryButton {
+  height: 52px;
+  padding: 0 26px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* primary */
+.primaryButton {
+  border: none;
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #6f94e8 0%, #3263bf 100%);
+  box-shadow: 0 12px 28px rgba(50, 99, 191, 0.3);
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+/* secondary */
+.secondaryButton {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.15);
 }

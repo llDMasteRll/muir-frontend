@@ -1,0 +1,496 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: "Inter", "Roboto", "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+.heroCard {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(247, 250, 255, 0.9) 100%
+  );
+  border: 1px solid #dfe7f5;
+  border-radius: 22px;
+  box-shadow: 0 10px 26px rgba(46, 73, 123, 0.06);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.heroTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.heroLeft {
+  flex: 1;
+  min-width: 0;
+}
+
+.planBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.planType {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #edf4ff;
+  border: 1px solid #d9e6fb;
+  color: #5577af;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.statusBadge {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.statusActive {
+  background: rgba(34, 197, 94, 0.14);
+  color: #0d9554;
+  border: 1px solid rgba(34, 197, 94, 0.18);
+}
+
+.planTitle {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #203d73;
+}
+
+.planSubtitle {
+  max-width: 820px;
+  margin: 10px 0 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #7388ae;
+}
+
+.heroRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.primaryButton,
+.secondaryButton,
+.primaryButtonFull,
+.secondaryButtonFull {
+  height: 48px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.primaryButton {
+  padding: 0 20px;
+  border: none;
+  background: linear-gradient(135deg, #6f94e8 0%, #3263bf 100%);
+  box-shadow: 0 14px 28px rgba(50, 99, 191, 0.18);
+  color: #ffffff;
+}
+
+.primaryButton:hover,
+.primaryButtonFull:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+.secondaryButton {
+  padding: 0 18px;
+  border: 1px solid #dbe4f4;
+  background: rgba(255, 255, 255, 0.9);
+  color: #355890;
+}
+
+.secondaryButton:hover,
+.secondaryButtonFull:hover {
+  background: #ffffff;
+  border-color: #cfdbef;
+}
+
+.heroStats {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.statCard {
+  background: rgba(248, 251, 255, 0.9);
+  border: 1px solid #e4ebf8;
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: #7f93b4;
+}
+
+.statValue {
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 800;
+  color: #203d73;
+}
+
+.mainGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #dfe7f5;
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(46, 73, 123, 0.05);
+  padding: 18px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #213f74;
+}
+
+.sectionHint {
+  font-size: 12px;
+  font-weight: 700;
+  color: #8aa0c2;
+  white-space: nowrap;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.infoItem {
+  background: #f7f9fd;
+  border: 1px solid #e7edf7;
+  border-radius: 16px;
+  padding: 14px;
+  min-width: 0;
+}
+
+.infoLabel {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #8da0be;
+}
+
+.infoValue {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2e4b81;
+  line-height: 1.35;
+}
+
+.billingBox {
+  background: linear-gradient(180deg, #f8fbff 0%, #f3f8ff 100%);
+  border: 1px solid #e4ecf9;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.billingMain {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.billingAmount {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  color: #203d73;
+}
+
+.billingPeriod {
+  font-size: 14px;
+  font-weight: 600;
+  color: #7a8fb2;
+}
+
+.billingBreakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.breakdownRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #55709d;
+}
+
+.breakdownTotal {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid #dfe8f7;
+  font-size: 15px;
+  font-weight: 800;
+  color: #27457a;
+}
+
+.featuresCard {
+  grid-column: span 6;
+}
+
+.modulesCard {
+  grid-column: span 6;
+}
+
+.renewalCard {
+  grid-column: span 5;
+}
+
+.historyCard {
+  grid-column: span 7;
+}
+
+.card:nth-child(1) {
+  grid-column: span 7;
+}
+
+.card:nth-child(2) {
+  grid-column: span 5;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f7f9fd;
+  border: 1px solid #e7edf7;
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #35588f;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.featureDot {
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6f94e8 0%, #3263bf 100%);
+  flex-shrink: 0;
+}
+
+.moduleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.moduleItem {
+  background: #f7f9fd;
+  border: 1px solid #e7edf7;
+  border-radius: 16px;
+  padding: 14px;
+  min-width: 0;
+}
+
+.moduleTitle {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #27457a;
+}
+
+.moduleDesc {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #7187ad;
+}
+
+.renewalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.renewalBox {
+  background: linear-gradient(180deg, #f8fbff 0%, #f3f8ff 100%);
+  border: 1px solid #e4ecf9;
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.renewalLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8aa0c2;
+}
+
+.renewalValue {
+  display: block;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 800;
+  color: #203d73;
+}
+
+.renewalText {
+  margin: 12px 0 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #7288ae;
+}
+
+.actionList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.primaryButtonFull {
+  width: 100%;
+  border: none;
+  background: linear-gradient(135deg, #6f94e8 0%, #3263bf 100%);
+  box-shadow: 0 12px 24px rgba(50, 99, 191, 0.16);
+  color: #ffffff;
+}
+
+.secondaryButtonFull {
+  width: 100%;
+  border: 1px solid #dbe4f4;
+  background: #f7fafe;
+  color: #355890;
+}
+
+.historyTable {
+  width: 100%;
+}
+
+.historyHead,
+.historyRow {
+  display: grid;
+  grid-template-columns: 1.3fr 1.8fr 0.7fr 0.9fr 0.9fr;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.historyHead {
+  background: #f4f7fc;
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: #50658d;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.historyBody {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.historyRow {
+  background: #fbfcff;
+  border: 1px solid #e7edf7;
+  border-radius: 12px;
+  padding: 12px;
+  color: #32486f;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tableStatus {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.tableStatusActive {
+  background: rgba(34, 197, 94, 0.14);
+  color: #0d9554;
+}
+
+.tableStatusCompleted {
+  background: rgba(96, 116, 150, 0.14);
+  color: #5a6f92;
+}

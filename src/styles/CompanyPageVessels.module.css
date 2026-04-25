@@ -1,228 +1,557 @@
 .container {
   width: 100%;
-
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-/* ===== Header ===== */
-
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.vesselCards {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 50px;
-}
-
-.vessel {
-  position: relative;
-  width: 350px;
-  height: 330px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid #e5e7eb;
-  background: white;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: 0.25s;
-  cursor: pointer;
-}
-
-.vessel:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-}
-
-.vesselPicture {
-  height: 60%;
-  width: 100%;
-  background: url("../../public/images/test_vessel.jpg") no-repeat 100%/100%;
-  border-radius: 14px 14px 0 0;
-}
-
-.name {
+  gap: 18px;
   font-family: "Inter", "Roboto", "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: 1.25em;
-  color: #1a1a1a;
-
-  margin-left: 5%;
-  margin-top: 10px;
-}
-
-.meta {
-  font-family: "Inter", "Roboto", "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 1em;
-  color: #666;
-
-  margin-left: 5%;
-  margin-top: 10px;
-}
-
-.Buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
-  margin-bottom: 21px;
-}
-
-.Button {
-  width: 40%;
-  height: 40px;
-  border: none;
-  border-radius: 20px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-.Button:nth-child(1) {
-  background-color: #3a86ff;
-}
-
-.Button:nth-child(2) {
-  background-color: #22c55e;
-}
-
-.Button:nth-child(1):hover {
-  background-color: #195c73;
-}
-
-.Button:nth-child(2):hover {
-  background-color: #256f47;
-}
-
-/* ===== Progress block ===== */
-
-.progressBlock {
-  width: 100%;
-  padding: 0 20px 20px 20px;
   box-sizing: border-box;
 }
 
-.progressBar {
+.topbar {
   width: 100%;
-  height: 12px;
-  background: #e5e7eb;
-  border-radius: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.leftSide {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.searchWrap {
+  width: min(460px, 100%);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #dfe7f5;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(40, 67, 122, 0.06);
+  box-sizing: border-box;
+}
+
+.searchIcon {
+  font-size: 18px;
+  color: #7890b7;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: #233d70;
+  font-family: "Inter", "Roboto", "Poppins", sans-serif;
+}
+
+.searchInput::placeholder {
+  color: #8a9bbb;
+}
+
+.clearButton {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: #eef3fb;
+  color: #6c82a9;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.clearButton:hover {
+  background: #e5edf9;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filterChip {
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid #dbe4f5;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #5f769e;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.filterChip:hover {
+  background: #f5f8fe;
+  color: #2f4c82;
+}
+
+.filterChipActive {
+  background: linear-gradient(135deg, #6c9cf0 0%, #3f73d7 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(63, 115, 215, 0.22);
+}
+
+.addVessel {
+  min-width: 190px;
+  height: 56px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, #5f8df0 0%, #2f63c6 100%);
+  box-shadow: 0 12px 26px rgba(47, 99, 198, 0.28);
+
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.addVessel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(47, 99, 198, 0.35);
+  filter: brightness(1.05);
+}
+
+.addIcon {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0.9;
+  color: #ffffff;
+}
+
+.addVessel {
+  position: relative;
   overflow: hidden;
-  margin-top: 15px;
+}
+
+.summaryRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.summaryCard {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid #dfe7f5;
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 20px rgba(50, 74, 120, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summaryLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: #7c90b2;
+}
+
+.summaryValue {
+  font-size: 28px;
+  font-weight: 800;
+  color: #203d73;
+  line-height: 1;
+}
+
+.vesselGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.vesselCard {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(248, 251, 255, 0.9) 100%
+  );
+
+  border: 1px solid rgba(220, 228, 240, 0.8); /* ← мягкий нейтральный */
+
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+
+  box-shadow:
+    0 10px 26px rgba(30, 60, 120, 0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+  transition: all 0.25s ease;
+
+  cursor: pointer; /* ← вот это добавили */
+}
+
+.vesselCard:hover {
+  transform: translateY(-6px) scale(1.01);
+
+  box-shadow:
+    0 18px 38px rgba(30, 60, 120, 0.14),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+
+  border-color: rgba(210, 220, 235, 1); /* ← не синий, а нейтральный */
+}
+
+.vesselCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.4),
+    transparent 40%
+  );
+
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.vesselCard:hover::after {
+  opacity: 1;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+
+  background: linear-gradient(
+    180deg,
+    #dbeafe 0%,
+    #bcd7f7 100%
+  );
+}
+
+.imageWrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.0) 40%,
+    rgba(0,0,0,0.25) 100%
+  );
+
+  pointer-events: none;
+}
+
+.vesselPicture {
+  width: 100%;
+  height: 100%;
+  background: url("../../public/images/test_vessel.jpg") center/cover no-repeat;
+  transform: scale(1.01);
+}
+
+.vesselCard:hover .vesselPicture {
+  transform: scale(1.05);
+  transition: transform 0.6s ease;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.statusBadge,
+.performanceBadge {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
+}
+
+.statusBadge {
+  height: 28px;
+  padding: 0 12px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.statusActive {
+  background: rgba(34, 197, 94, 0.2);
+  color: #0f9f5a;
+}
+
+.statusInactive {
+  background: rgba(148, 163, 184, 0.25);
+  color: #516581;
+}
+
+.performanceBadge {
+  height: 28px;
+  padding: 0 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.5);
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.performanceExcellent {
+  color: #159947;
+}
+
+.performanceGood {
+  color: #b58b08;
+}
+
+.performanceMedium {
+  color: #d66c22;
+}
+
+.performanceLow {
+  color: #d14b45;
+}
+
+.cardBody {
+  padding: 16px 16px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.name {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #213c72;
+  line-height: 1.2;
+}
+
+.shipId {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8193b2;
+}
+
+.detailsButton {
+  height: 34px;
+  padding: 0 14px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #f1f5ff 0%,
+    #e3ecff 100%
+  );
+
+  border: 1px solid #d6e2f5;
+
+  color: #33558f;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+  flex-shrink: 0;
+
+  transition: 
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+
+  will-change: transform;
+}
+
+.detailsButton:hover {
+  box-shadow: 0 6px 14px rgba(60, 90, 160, 0.15);
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metaItem {
+  background: rgba(245, 248, 255, 0.9);
+
+  border: 1px solid #e7edf7;
+  border-radius: 14px;
+
+  padding: 10px 12px;
+
+  transition: 0.2s;
+}
+
+.metaItem:hover {
+  background: #f0f6ff;
+}
+
+.metaLabel {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #8ea0be;
+}
+
+.metaValue {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f4c82;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.progressLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6d82a8;
+}
+
+.progressPercent {
+  font-size: 14px;
+  font-weight: 800;
+  color: #294473;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 10px;
+
+  background: #e2e8f3;
+
+  border-radius: 999px;
+  overflow: hidden;
+
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
 }
 
 .progressFill {
   height: 100%;
-  border-radius: 20px;
-  background: linear-gradient(90deg, #ef4444 0%, #f59e0b 50%, #22c55e 100%);
+  border-radius: 999px;
+  overflow: hidden;
 }
 
-.progressText {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-  font-size: 14px;
-  color: #6b7280;
+.progressGradient {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #ef4444 0%,
+    #f59e0b 30%,
+    #22c55e 100%
+  );
 }
 
-.vessel:hover .progressFill {
-  background: linear-gradient(90deg, #ff0000 0%, #fbbf24 50%, #22c55e 100%);
-}
-
-/* ===== Add Vessel Button ===== */
-
-.addVessel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: linear-gradient(90deg, rgba(111, 148, 232, 1) 0%, rgba(50, 99, 191, 1) 100%);
-
-  width: 190px;
-  height: 55px;
-
-  font-size: 1.25em;
-  color: white;
-
-  border: none;
+.emptyState {
+  width: 100%;
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid #dfe7f5;
   border-radius: 22px;
-
-  cursor: pointer;
-  gap: 10px;
+  padding: 34px 20px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-.addVessel::before {
-  content: '+';
-  font-size: 2em;
-  font-weight: 200;
-  height: 40px;
-  align-self: flex-start;
+.emptyIcon {
+  font-size: 34px;
+  margin-bottom: 8px;
 }
 
-.addVessel:hover {
-  filter: brightness(1.15) saturate(1.2);
+.emptyState h3 {
+  margin: 0 0 8px 0;
+  color: #203d73;
+  font-size: 22px;
 }
 
-/* ===== Search Bar ===== */
-
-.search {
-  display: flex;
-  align-items: center;
-
-  width: 420px;
-  height: 55px;
-
-  background: white;
-  border-radius: 40px;
-
-  padding: 0 18px;
-  border: 1px solid #e5e7eb;
-
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  transition: 0.25s;
+.emptyState p {
+  margin: 0;
+  color: #7e91b3;
+  font-size: 15px;
 }
 
-.search:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.search input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 1em;
-  padding: 0 10px;
-  font-family: "Inter", "Roboto", "Poppins", sans-serif;
-  color: black;
-}
-
-.search input::placeholder {
-  color: #999;
-}
-
-.icon {
-  font-size: 18px;
-  opacity: 0.6;
-}
-
-.mic {
-  font-size: 18px;
-  opacity: 0.7;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.mic:hover {
-  opacity: 1;
-  transform: scale(1.1);
+/* small safety for medium desktop widths */
+@media (max-width: 1400px) {
+  .vesselGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

@@ -26,8 +26,15 @@ import CaptainLayout from "./layouts/CaptainLayout";
 import ProfileMain from "./pages/ProfileMain";
 import ProfileLayout from "./layouts/ProfileLayout";
 
+import CourseLayout from "./layouts/CourseLayout";
+import CourseHeader from "./pages/CourseHeader";
+import CourseSidebar from "./pages/CourseSidebar";
+import Course from "./pages/Course";
+
+
 import CompanyPageVessels from "./pages/CompanyPageVessels";
 import CompanyDashboard from "./pages/CompanyDashboard"
+import CompanyPageSubscription from "./pages/CompanyPageSubscription"
 import CompanyLayout from "./layouts/CompanyLayout";
 
 const links = {
@@ -91,11 +98,19 @@ const router = createBrowserRouter([
       { index: true, element: "" },
       { path: "vessels", element: <CompanyPageVessels /> },
       { path: "dashboard", element: <CompanyDashboard /> },
+      { path: "subscription", element: <CompanyPageSubscription /> },
+    ],
+  },
+  { 
+    path: "course", 
+    element: <CourseLayout />,
+    children: [
+      { index: true, element: <Course /> },
     ],
   },
   { 
     path: "*", 
-    element: <NotFoundPage /> 
+    element: <NotFoundPage/>
   },
 ]);
 
