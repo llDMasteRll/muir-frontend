@@ -6,6 +6,8 @@ import DataInput from "../Input/DataInput";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import formatDate from "../../../functions/formatDate";
 import { ReactComponent as Edit } from "./Edit.svg";
+import isFutureDate from "../../../functions/isFutureDate";
+import isValidIsoDate from "../../../functions/isValidIsoDate";
 
 const Table = ({
   filteredCrew,
@@ -54,17 +56,22 @@ const Table = ({
   const handleChangeStatus = () => {
     if (!changeStatusMutation || !currentWorker) return;
 
-    if (!date) {
-      alert("Please enter a date");
+    if (!isValidIsoDate(date)) {
+      alert("Please enter a valid date");
+      return;
+    }
+
+    if (isFutureDate(date)) {
+      alert("Date cannot be in the future");
       return;
     }
 
     changeStatusMutation.mutate({
       worker_id: currentWorker.id,
       status: currentWorker.sign_off_date ? "on" : "off",
-      date: date,
+      date,
     });
-    
+
     setDate("");
     setIsOpen(false);
   };
@@ -108,7 +115,10 @@ const Table = ({
     <>
       <ModalWindow
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={() => {
+          setDate("");
+          setIsOpen(false);
+        }}
         newStyles={styles.modal_padding}
       >
         <h2 className={styles.modal_header}>
@@ -132,7 +142,7 @@ const Table = ({
           <Button onClick={() => setIsOpen(false)}>Cancel</Button>
         </div>
       </ModalWindow>
-      
+
       <div className={styles.Table}>
         <div className={styles.table_wrapper}>
           <table>

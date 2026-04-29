@@ -16,6 +16,10 @@ import addCrew from "../API/post/addCrew";
 import fetchPositions from "../API/get/fetchPositions";
 import fetchPositionGroups from "../API/get/fetchPositionGroups";
 
+// Functions
+import isFutureDate from "../functions/isFutureDate";
+import isValidIsoDate from "../functions/isValidIsoDate";
+
 const MasterAdd = ({ links }) => {
   // ==================== NAVIGATION ====================
 
@@ -104,11 +108,18 @@ const MasterAdd = ({ links }) => {
         recordErrors.position_id = true;
         hasError = true;
       }
-      if (!record.date_of_birth) {
+      if (
+        !isValidIsoDate(record.date_of_birth) ||
+        isFutureDate(record.date_of_birth)
+      ) {
         recordErrors.date_of_birth = true;
         hasError = true;
       }
-      if (!record.sign_on_date) {
+
+      if (
+        !isValidIsoDate(record.sign_on_date) ||
+        isFutureDate(record.sign_on_date)
+      ) {
         recordErrors.sign_on_date = true;
         hasError = true;
       }
@@ -279,23 +290,13 @@ const MasterAdd = ({ links }) => {
                   <td>
                     <DataInput
                       type="date"
-                      max={new Date().toISOString().split("T")[0]}
                       value={record.date_of_birth}
                       onChange={(e) => {
-                        const [year, month, day] = e.target.value.split("-");
-                        handleChange(
-                          record.id,
-                          "date_of_birth",
-                          `${day}.${month}.${year}`,
-                        );
+                        handleChange(record.id, "date_of_birth", e.target.value);
                       }}
                       className={`
                         ${styles.date_input}
-                        ${
-                          errors[record.id]?.date_of_birth
-                            ? styles.error_input
-                            : ""
-                        }
+                        ${errors[record.id]?.date_of_birth ? styles.error_input : ""}
                       `}
                     />
                   </td>
@@ -304,20 +305,11 @@ const MasterAdd = ({ links }) => {
                       type="date"
                       value={record.sign_on_date}
                       onChange={(e) => {
-                        const [year, month, day] = e.target.value.split("-");
-                        handleChange(
-                          record.id,
-                          "date_of_birth",
-                          `${day}.${month}.${year}`,
-                        );
+                        handleChange(record.id, "sign_on_date", e.target.value);
                       }}
                       className={`
                         ${styles.date_input}
-                        ${
-                          errors[record.id]?.sign_on_date
-                            ? styles.error_input
-                            : ""
-                        }
+                        ${errors[record.id]?.sign_on_date ? styles.error_input : ""}
                       `}
                     />
                   </td>
@@ -345,7 +337,7 @@ const MasterAdd = ({ links }) => {
 
           <div className={styles.buttons}>
             <Button onClick={handleSubmit}>Add crew</Button>
-            <Link to={links.master}>
+            <Link to={-1}>
               <Button className={styles.back_arrow_space}>
                 Back <div className={styles.back_arrow}></div>
               </Button>
