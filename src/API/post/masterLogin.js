@@ -2,7 +2,7 @@ import api from "../API";
 
 const masterLogin = async ({ ship_email, ship_key }) => {
     try {
-        const response = await api.post("/login", {
+        const response = await api.post("/auth/login", {
             role: "master",
             ship_email,
             ship_key
