@@ -39,7 +39,7 @@ const ProfileMain = () => {
 
           <div className={styles.profileInfo}>
             <span className={styles.overline}>Crew Member Profile</span>
-            <h2 className={styles.name}>Yuriy Bobrov</h2>
+            <h2 className={styles.name}>John Doe</h2>
             <p className={styles.role}>Master · Offshore assigned training</p>
           </div>
 
@@ -69,12 +69,12 @@ const ProfileMain = () => {
           <div className={styles.infoGrid}>
             <div className={styles.infoItem}>
               <span>Name</span>
-              <b>Yuriy</b>
+              <b>John</b>
             </div>
 
             <div className={styles.infoItem}>
               <span>Surname</span>
-              <b>Bobrov</b>
+              <b>Doe</b>
             </div>
 
             <div className={styles.infoItem}>

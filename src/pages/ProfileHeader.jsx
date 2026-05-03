@@ -31,10 +31,10 @@ const ProfileHeader = () => {
         </button>
 
         <button type="button" className={styles.profileButton}>
-          <span className={styles.avatar}>YB</span>
+          <span className={styles.avatar}>JD</span>
 
           <span className={styles.profileMeta}>
-            <span className={styles.profileName}>Yuriy Bobrov</span>
+            <span className={styles.profileName}>John Doe</span>
             <span className={styles.profileRole}>Master</span>
           </span>
         </button>

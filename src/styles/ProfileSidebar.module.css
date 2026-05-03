@@ -22,26 +22,53 @@
 }
 
 .logoBlock {
-  min-height: 82px;
+  position: relative;
+  z-index: 2;
+
+  min-height: 78px;
+
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 6px 14px;
+
+  padding: 8px 6px 14px 6px;
   margin-bottom: 10px;
 }
 
-.logoIcon {
+.logoButton {
   width: 50px;
   height: 50px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 22px;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+
   flex-shrink: 0;
+}
+
+.logoButton:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../public/images/Muir_icon.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .brandText {

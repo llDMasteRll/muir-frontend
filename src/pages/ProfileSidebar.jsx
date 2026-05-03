@@ -47,7 +47,14 @@ const ProfileSidebar = () => {
   return (
     <aside className={styles.container}>
       <div className={styles.logoBlock}>
-        <div className={styles.logoIcon}>🌊</div>
+        <button
+          type="button"
+          className={styles.logoButton}
+          onClick={() => navigate("/")}
+          aria-label="Go to homepage"
+        >
+          <div className={styles.logo} />
+        </button>
 
         <div className={styles.brandText}>
           <span className={styles.brandTitle}>Muireolais</span>

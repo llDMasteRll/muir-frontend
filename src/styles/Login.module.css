@@ -151,7 +151,7 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 22px; /* 👈 добавили */
 
   box-sizing: border-box;
 }
@@ -308,8 +308,6 @@
   width: 100%;
   height: 52px;
 
-  margin-top: 20px;
-
   border: none;
   border-radius: 16px;
 
@@ -392,4 +390,72 @@
   height: 42px;
   object-fit: contain;
   display: block;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.loginInput {
+  width: 100%;
+  height: 58px;
+  padding: 0 18px;
+  border-radius: 18px;
+  border: 1px solid #d8e2f2;
+  background: #f8fbff;
+  color: #203d73;
+  font-size: 15px;
+  font-weight: 700;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.18s ease;
+}
+
+.loginInput::placeholder {
+  color: #8ca1c1;
+}
+
+.loginInput:focus {
+  background: #ffffff;
+  border-color: #3263bf;
+  box-shadow: 0 0 0 4px rgba(50, 99, 191, 0.12);
+}
+
+.loginActions {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  gap: 12px;
+}
+
+.backButton {
+  width: 100%;
+  height: 52px;
+  border-radius: 16px;
+  border: 1px solid #d8e2f2;
+  background: #ffffff;
+  color: #203d73;
+  font-size: 15px;
+  font-weight: 850;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.backButton:hover {
+  background: #edf4ff;
+  border-color: #bfd2f0;
+}
+
+.inputError {
+  border-color: #e5484d;
+  background: #fff5f5;
+}
+
+.errorText {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e5484d;
 }
