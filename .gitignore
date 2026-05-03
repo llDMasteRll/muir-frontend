@@ -10,6 +10,7 @@
 
 # production
 /build
+/f_img.ps1
 
 # misc
 .DS_Store

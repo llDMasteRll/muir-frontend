@@ -145,7 +145,7 @@ const MasterMain = ({ links }) => {
   });
 
   const changeStatusMutation = useMutation({
-    mutationFn: ({ worker_id, status }) => changeBoardStatus(worker_id, status),
+    mutationFn: ({ worker_id, date, status }) => changeBoardStatus(worker_id, date, status),
 
     onSuccess: () => {
       queryClient.invalidateQueries(["crew"]);
