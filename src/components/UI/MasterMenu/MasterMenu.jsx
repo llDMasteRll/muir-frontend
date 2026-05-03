@@ -19,8 +19,8 @@ const MasterMenu = ({
     <div className={styles.menu}>
       <div className={styles.tabs}>
         <div className={styles.tab}>Dashboard</div>
-        <div className={`${styles.tab} ${styles.active}`}>Crew list</div>
-        <div className={styles.tab}>Statistic</div>
+        <div className={`${styles.tab} ${styles.active}`}>Crew</div>
+        <div className={styles.tab}>Statistics</div>
       </div>
 
       <div className={styles.buttons}>

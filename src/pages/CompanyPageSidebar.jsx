@@ -7,6 +7,12 @@ const CompanyPageSidebar = () => {
 
   const navItems = [
     {
+      label: "Dashboard",
+      path: "/company/dashboard",
+      icon: "📊",
+      hint: "Performance metrics",
+    },
+    {
       label: "Vessels",
       path: "/company/vessels",
       icon: "🚢",
@@ -17,12 +23,6 @@ const CompanyPageSidebar = () => {
       path: "/company/subscription",
       icon: "💳",
       hint: "Plan & billing",
-    },
-    {
-      label: "Dashboard",
-      path: "/company/dashboard",
-      icon: "📊",
-      hint: "Performance metrics",
     },
   ];
 

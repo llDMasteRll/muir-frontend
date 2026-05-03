@@ -1,154 +1,239 @@
-/* rgba(123, 167, 197, 33%); */
-
-.Table {  
+.Table {
+  width: 100%;
   position: relative;
-  background-color: rgba(123, 167, 197, 0.33);
-  border: solid 1px rgba(123, 167, 197, 0%);
-  border-radius: 5px;
-  padding-bottom: 35px;
-}
-
-.Table::after {
-  content: '';
-  display: flex;
-  top: 28px;
-  position: absolute;
-  width: 96%;
-  height: 50px;
-  background-color: #678ca6;
-  border: solid 1px #678ca6;
-  border-radius: 5px;
-  justify-self: center;
-  z-index: -1;
 }
 
 .table_wrapper {
-  display: flex;
-  justify-self: center;  
-  width: 96%;
-  padding-top: 26px;
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e4ebf8;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .Table table {
   width: 100%;
+  min-width: 1040px;
   table-layout: fixed;
   border-collapse: collapse;
 }
 
-
+.Table thead {
+  background: #f3f7fc;
+}
 
 .Table th {
-  text-wrap: nowrap;
-  font-size: 1.25em;
-  font-weight: 400;
-  color: #E9F8FF;
-} 
-
-.Table th, .Table td {
+  padding: 18px 14px;
   text-align: left;
-  color: #182C3A;
-  padding: 15px 8px 16px 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #7288ae;
+  white-space: nowrap;
 }
 
 .Table td {
-  border-bottom: solid 1px #678ca6;
+  padding: 18px 14px;
+  font-size: 14px;
+  font-weight: 650;
+  color: #2f4c82;
+  border-bottom: 1px solid #e7edf7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+.Table tbody tr {
+  transition: background 0.18s ease;
 }
 
-.pagination Button {
-  margin: 0 5px;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: solid 1px #678ca6;
-  border-radius: 5px;
-  background-color: transparent;
-  color: #678CA6;
-  cursor: pointer;
-  font-size: 1.25em;
-  font-weight: 400;
+.Table tbody tr:hover {
+  background: #f7faff;
 }
 
+.Table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.Table td:nth-child(3) {
+  color: #203d73;
+  font-weight: 850;
+}
+
+.Table td:nth-child(7):empty::before {
+  content: "—";
+  color: #9aacca;
+}
 
 .edit {
+  width: 22px;
+  height: 22px;
+  color: #6f8db5;
   cursor: pointer;
+  transition: 0.18s ease;
 }
 
-.curent_page {
-  font-size: 1em;
-  outline: none;
-  width: 40px;
-  color: #182C3A;
-  border: solid 1px #678ca6;
-  border-radius: 5px;
-  text-align: center;
-  margin: 0 5px;
-
+.edit:hover {
+  color: #3263bf;
+  transform: translateY(-1px);
 }
 
-.curent_page input:focus {
-  border: 1px solid #678ca6;
-}
+/* ==================== STATUS BUTTONS ==================== */
 
-.without_data {
-  width: 86.3vw;
-  height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #E9F8FF;
-  background-color: rgba(123, 167, 197, 0.33);
-  border: 5px solid transparent;
-  border-radius: 5px;
+button.on_board,
+button.off_board {
+  min-width: 104px;
+  height: 34px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 999px;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 850;
+  transform: none;
 }
 
 button.on_board {
-  background-color: #59a95d;
+  background: rgba(34, 197, 94, 0.14);
+  color: #0f9f5a;
 }
 
 button.off_board {
-  background-color: #B8081D;
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
 }
 
 button.on_board:hover {
-  background-color: #61B665;
+  background: rgba(34, 197, 94, 0.2);
+  color: #0c8c4e;
+  transform: none;
 }
 
 button.off_board:hover {
-  background-color: #d1071f;
+  background: rgba(239, 68, 68, 0.18);
+  color: #b91c1c;
+  transform: none;
 }
+
+/* ==================== PAGINATION ==================== */
+
+.pagination {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination button {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid #d8e2f2;
+  background: #ffffff;
+  color: #35588f;
+  box-shadow: none;
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.pagination button:hover {
+  background: #edf4ff;
+  color: #203d73;
+  transform: none;
+}
+
+.curent_page {
+  width: 42px;
+  height: 38px;
+  margin: 0;
+  border-radius: 12px;
+  border: 1px solid #cdddf5;
+  background: #edf4ff;
+  outline: none;
+  text-align: center;
+  color: #203d73;
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.curent_page:focus {
+  border-color: #3263bf;
+  box-shadow: 0 0 0 4px rgba(50, 99, 191, 0.12);
+}
+
+/* ==================== EMPTY ==================== */
+
+.without_data {
+  min-height: 260px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7288ae;
+  font-size: 18px;
+  font-weight: 850;
+  background: #f7f9fd;
+  border-radius: 16px;
+}
+
+/* ==================== MODAL ==================== */
+
 .modal_padding {
-  padding: 30px;
+  padding: 32px;
 }
 
 .modal_header {
+  margin: 0 0 20px;
   text-align: center;
-  text-wrap: nowrap;
+  color: #203d73;
+  font-size: 22px;
+  font-weight: 850;
+  white-space: nowrap;
 }
 
 .date_input {
   display: block;
-  margin: 20px auto;       
-  padding: 10px 15px;      
-  width: 60%;              
-  max-width: 300px;        
-  border: 1px solid #ccc;  
-  border-radius: 6px;      
-  font-size: 16px;         
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 320px;
+  height: 46px;
+  margin: 0 auto 22px;
+  padding: 0 14px;
+  border: 1px solid #d8e2f2;
+  border-radius: 15px;
+  background: #ffffff;
+  color: #203d73;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  transition: 0.2s ease;
 }
 
 .date_input:focus {
-  border-color: #7eaccc;   
-  box-shadow: 0 0 6px rgba(74,144,226,0.4);
-  outline: none;
+  border-color: #3263bf;
+  box-shadow: 0 0 0 4px rgba(50, 99, 191, 0.12);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .table_wrapper {
+    border-radius: 18px;
+  }
+
+  .Table th,
+  .Table td {
+    padding: 15px 12px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+
+  .modal_header {
+    white-space: normal;
+    font-size: 20px;
+  }
 }

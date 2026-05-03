@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import styles from "../styles/MasterMain.module.css"; // Assuming you have a CSS module for styles
+import styles from "../styles/MasterMain.module.css";
+
 import Table from "../components/UI/Table/Table";
 import Toast from "../components/UI/Toast/Toast";
 import MasterMenu from "../components/UI/MasterMenu/MasterMenu";
@@ -11,13 +12,8 @@ import deleteCrew from "../API/delete/deleteCrew";
 import changeBoardStatus from "../API/patch/changeBoardStatus";
 
 const MasterMain = ({ links }) => {
-  // ==================== CONSTANTS ====================
-
   const itemsPerPage = 10;
 
-  // ==================== STATE ====================
-
-  // Current page state, initialized from localStorage if available
   const [page, setPage] = useState(() => {
     try {
       const memoPage = localStorage.getItem("crewPage");
@@ -28,22 +24,12 @@ const MasterMain = ({ links }) => {
   });
 
   const [searchQuery, setSearchQuery] = useState("");
-
-  // Array of selected crew members
   const [selectedIds, setSelectedIds] = useState([]);
-
-  // Controls whether the modal window is open or closed
   const [isOpen, setIsOpen] = useState(false);
-
-  // Notification state for success/error messages (used by Toast component)
   const [notification, setNotification] = useState(null);
 
-  // ==================== REACT QUERY ====================
-
-  // React Query client instance for cache management
   const queryClient = useQueryClient();
 
-  // Fetch crew data for the current page using React Query
   const {
     data: crew = [
       {
@@ -90,7 +76,7 @@ const MasterMain = ({ links }) => {
         sign_on_date: "2026-02-12T00:00:00.000Z",
         sign_off_date: "2026-02-12T00:00:00.000Z",
         status: 1,
-      },
+      },  
     ],
     isLoading,
     isError,
@@ -100,9 +86,6 @@ const MasterMain = ({ links }) => {
     keepPreviousData: true,
   });
 
-  // ==================== DATA PROCESSING ====================
-
-  // Filter crew list based on search input
   const filteredCrew = useMemo(() => {
     if (!Array.isArray(crew)) return [];
 
@@ -117,7 +100,6 @@ const MasterMain = ({ links }) => {
     );
   }, [crew, searchQuery]);
 
-  // Crew data for the current page
   const visibleCrew = useMemo(() => {
     const start = (page - 1) * itemsPerPage;
     return filteredCrew.slice(start, start + itemsPerPage);
@@ -125,11 +107,17 @@ const MasterMain = ({ links }) => {
 
   const totalPages = Math.ceil(filteredCrew.length / itemsPerPage) || 1;
 
-  // ==================== HANDLERS ====================
+  const totalCrew = filteredCrew.length;
+  const onBoardCount = filteredCrew.filter(
+    (person) => !person.sign_off_date,
+  ).length;
+  const offBoardCount = filteredCrew.filter(
+    (person) => person.sign_off_date,
+  ).length;
 
   const handleSearchChange = (val) => {
     setSearchQuery(val);
-    setPage(1); // Return to the first page when searching
+    setPage(1);
   };
 
   const confirmDeleting = () => {
@@ -139,15 +127,6 @@ const MasterMain = ({ links }) => {
     );
   };
 
-  // ==================== MUTATIONS ====================
-
-  // const addCrewMutation = useMutation({
-  //   mutationFn: addCrew,
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries(["crew"]);
-  //   },
-  // });
-
   const deleteCrewMutation = useMutation({
     mutationFn: deleteCrew,
     onSuccess: () => {
@@ -156,7 +135,7 @@ const MasterMain = ({ links }) => {
         type: "success",
         message: "The deletion was successful ✅",
       });
-      setTimeout(() => setNotification(null), 4000); // must match the animation time in the Toast.module.css
+      setTimeout(() => setNotification(null), 4000);
       setSelectedIds([]);
     },
     onError: () => {
@@ -182,114 +161,104 @@ const MasterMain = ({ links }) => {
     },
   });
 
-  // ==================== EFFECTS ====================
-
   useEffect(() => {
     localStorage.setItem("crewPage", page);
   }, [page]);
 
-  // ==================== LOADING STATE ====================
+  const renderPageHeader = () => (
+    <div className={styles.pageHeader}>
+      <div className={styles.pageInfo}>
+        <div>
+          <span className={styles.eyebrow}>Crew management</span>
+
+          <h1 className={styles.pageTitle}>Manage your crew</h1>
+
+          <p className={styles.pageSubtitle}>
+            Track crew members, onboard status and assignment readiness in one
+            place.
+          </p>
+        </div>
+
+        <div className={styles.statsGrid}>
+          <div className={styles.statCard}>
+            <span>Total crew</span>
+            <strong>{totalCrew}</strong>
+          </div>
+
+          <div className={styles.statCard}>
+            <span>On board</span>
+            <strong>{onBoardCount}</strong>
+          </div>
+
+          <div className={styles.statCard}>
+            <span>Off board</span>
+            <strong>{offBoardCount}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.heroVisual}>
+        <div className={styles.heroText}>
+          <strong>Crew readiness</strong>
+          <span>Monitor training and boarding progress</span>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderContent = () => (
+    <>
+      {renderPageHeader()}
+
+      <div className={styles.crew_list}>
+        <MasterMenu
+          links={links}
+          searchQuery={searchQuery}
+          handleSearchChange={handleSearchChange}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          selectedIds={selectedIds}
+          confirmDeleting={confirmDeleting}
+        />
+
+        <Table
+          filteredCrew={filteredCrew}
+          data={visibleCrew}
+          totalPages={totalPages}
+          page={page}
+          setPage={setPage}
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
+          changeStatusMutation={changeStatusMutation}
+        />
+      </div>
+    </>
+  );
 
   if (isLoading)
     return (
       <main>
         <div className="container">
-          <div className={styles.content}>
-            <div className={styles.crew_list}>
-              <MasterMenu
-                links={links}
-                searchQuery={searchQuery}
-                handleSearchChange={handleSearchChange}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                selectedIds={selectedIds}
-                confirmDeleting={confirmDeleting}
-              />
-              <div className={styles.nodata}>
-                <h2>Loading...</h2>
-              </div>
-{/* 
-              <Table
-                filteredCrew={filteredCrew}
-                data={visibleCrew}
-                totalPages={totalPages}
-                page={page}
-                setPage={setPage}
-                selectedIds={selectedIds}
-                setSelectedIds={setSelectedIds}
-                changeStatusMutation={changeStatusMutation}
-              /> */}
-            </div>
-          </div>
+          <div className={styles.content}>{renderContent()}</div>
         </div>
       </main>
     );
-
-  // ==================== ERROR STATE ====================
 
   if (isError)
     return (
       <main>
         <div className="container">
-          <div className={styles.content}>
-            <div className={styles.crew_list}>
-              <MasterMenu
-                links={links}
-                searchQuery={searchQuery}
-                handleSearchChange={handleSearchChange}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                selectedIds={selectedIds}
-                confirmDeleting={confirmDeleting}
-              />
-              <div className={styles.nodata}>
-                <h2>Can't load crew data</h2>
-              </div>
-              {/* <Table
-                filteredCrew={filteredCrew}
-                data={visibleCrew}
-                totalPages={totalPages}
-                page={page}
-                setPage={setPage}
-                selectedIds={selectedIds}
-                setSelectedIds={setSelectedIds}
-                changeStatusMutation={changeStatusMutation}
-              /> */}
-            </div>
-          </div>
+          <div className={styles.content}>{renderContent()}</div>
         </div>
       </main>
     );
 
-  // ==================== RENDER ====================
-
   return (
     <main>
       <Toast notification={notification} />
+
       <div className="container">
-        <div className={styles.content}>
-          <div className={styles.crew_list}>
-            <MasterMenu
-              links={links}
-              searchQuery={searchQuery}
-              handleSearchChange={handleSearchChange}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              selectedIds={selectedIds}
-              confirmDeleting={confirmDeleting}
-            />
-            <Table
-              filteredCrew={filteredCrew}
-              data={visibleCrew}
-              totalPages={totalPages}
-              page={page}
-              setPage={setPage}
-              selectedIds={selectedIds}
-              setSelectedIds={setSelectedIds}
-              changeStatusMutation={changeStatusMutation}
-            />
-          </div>
-        </div>
+        <div className={styles.content}>{renderContent()}</div>
       </div>
     </main>
   );

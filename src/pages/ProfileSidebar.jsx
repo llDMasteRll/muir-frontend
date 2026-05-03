@@ -1,56 +1,92 @@
-import { useState } from "react";
-import styles from "../styles/ProfileSiderbar.module.css";
+import styles from "../styles/ProfileSidebar.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ProfileSidebar = () => {
-  const [accountOpen, setAccountOpen] = useState(true);
-  const [settingsOpen, setSettingsOpen] = useState(true);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const navItems = [
+    {
+      label: "Profile",
+      path: "/profile",
+      hint: "Personal details",
+      icon: "👤",
+    },
+    {
+      label: "My Courses",
+      path: "/profile/courses",
+      hint: "Assigned learning",
+      icon: "📘",
+    },
+    {
+      label: "Progress",
+      path: "/profile/statistic",
+      hint: "Training overview",
+      icon: "📈",
+    },
+    {
+      label: "Certificates",
+      path: "/profile/certificates",
+      hint: "My documents",
+      icon: "🏅",
+    },
+    {
+      label: "Settings",
+      path: "/profile/settings",
+      hint: "Account options",
+      icon: "⚙️",
+    },
+    {
+      label: "Crew Management",
+      path: "/profile/crew-management",
+      hint: "Manage assigned crew",
+      icon: "👥",
+    },
+  ];
 
   return (
-    <aside className={styles.sidebar}>
-      {/* ACCOUNT */}
-      <div className={styles.section}>
-        <button
-          className={styles.sectionTitle}
-          onClick={() => setAccountOpen(!accountOpen)}
-        >
-          Account
-          <span className={accountOpen ? styles.arrowOpen : styles.arrow}>
-            ▾
-          </span>
-        </button>
+    <aside className={styles.container}>
+      <div className={styles.logoBlock}>
+        <div className={styles.logoIcon}>🌊</div>
 
-        {accountOpen && (
-          <ul className={styles.list}>
-            <li>Profile</li>
-            <li>Courses</li>
-            <li>Statistic</li>
-            <li>Certificates</li>
-            <li>My courses</li>
-          </ul>
-        )}
+        <div className={styles.brandText}>
+          <span className={styles.brandTitle}>Muireolais</span>
+          <span className={styles.brandSubtitle}>Crew Portal</span>
+        </div>
       </div>
 
-      {/* SETTINGS */}
-      <div className={styles.section}>
-        <button
-          className={styles.sectionTitle}
-          onClick={() => setSettingsOpen(!settingsOpen)}
-        >
-          Settings
-          <span className={settingsOpen ? styles.arrowOpen : styles.arrow}>
-            ▾
-          </span>
-        </button>
+      <div className={styles.sectionTitle}>Learning</div>
 
-        {settingsOpen && (
-          <ul className={styles.list}>
-            <li>Security</li>
-            <li>Theme</li>
-            <li>Devices</li>
-            <li>Notifications</li>
-            <li>Language</li>
-          </ul>
-        )}
+      <nav className={styles.nav}>
+        {navItems.map((item) => {
+          const active = pathname === item.path;
+
+          return (
+            <button
+              key={item.path}
+              type="button"
+              className={`${styles.navItem} ${active ? styles.active : ""}`}
+              onClick={() => navigate(item.path)}
+            >
+              <span className={styles.iconWrap}>{item.icon}</span>
+
+              <span className={styles.navText}>
+                <span className={styles.navMain}>{item.label}</span>
+                <span className={styles.navHint}>{item.hint}</span>
+              </span>
+            </button>
+          );
+        })}
+      </nav>
+
+      <div className={styles.statusBox}>
+        <span className={styles.statusLabel}>Current course</span>
+        <span className={styles.statusTitle}>Offshore Induction</span>
+        <span className={styles.statusMeta}>3 of 6 lessons completed</span>
+
+        <div className={styles.progressTrack}>
+          <div className={styles.progressFill} style={{ width: "50%" }} />
+        </div>
       </div>
     </aside>
   );

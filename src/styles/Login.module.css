@@ -1,118 +1,395 @@
-.loginBody {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url("../../public/images/login_background.png") no-repeat;
-    background-size: cover cover;
-    background-position-x: 15%; 
-    background-position-y: center;
-}
+.loginPage {
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
 
-.h2 {
-    text-align: center;
-    color: #1f3a4a;
-    margin-bottom: 22px;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 40px;
-
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-
-    color: #1f3a4a;
-    border: 1px solid rgba(255,255,255,0.4);
-
-    overflow: hidden;
-}
-
-.redirectButton {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
 
-  padding: 10px 14px;
-  width: 15vw;
+  padding: 32px;
 
-  background: rgba(255,255,255,0.9);
-  border: 1px solid rgba(0, 43, 63, 0.15);
-  color: #1f3a4a;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 31, 64, 0.72) 0%,
+      rgba(10, 31, 64, 0.38) 42%,
+      rgba(237, 244, 255, 0.92) 100%
+    ),
+    url("../../public/images/login_background.png") center/cover no-repeat;
 
-  font-size: 1.1em;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: start;
-  transition: 0.2s;
+  font-family: "Inter", "Roboto", "Poppins", sans-serif;
 }
 
-.redirectButton:hover {
-  background: white;
-  transform: translateY(-1px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+.pageInner {
+  width: min(1120px, 100%);
+  min-height: 620px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) 420px;
+  gap: 22px;
 }
 
-.icons {
+.brandPanel {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 28px;
+
+  padding: 34px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+
+  background:
+    radial-gradient(circle at top left, rgba(141, 181, 255, 0.28), transparent 34%),
+    rgba(10, 31, 64, 0.42);
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 24px 60px rgba(4, 20, 46, 0.24);
+}
+
+.brandLogo {
+  width: 62px;
+  height: 62px;
+  border-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-size: 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.brandOverline {
   display: inline-block;
-  width: 25px;
-  height: 25px;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  margin-bottom: 14px;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  color: rgba(221, 235, 255, 0.78);
 }
 
-.icon1 {
-  background-image: url("../../public/images/company_icon.svg");
-  background-size: 230% 230%;
-  background-position: center center;
+.brandTitle {
+  max-width: 680px;
+  margin: 0;
+
+  font-size: clamp(42px, 4vw, 64px);
+  line-height: 1.02;
+  font-weight: 850;
+
+  color: #ffffff;
+  letter-spacing: -0.04em;
 }
 
-.icon2 {
-  background-image: url("../../public/images/master_icon.svg");
-  background-size: 150% 150%;
-  background-position: center center;
+.brandText {
+  max-width: 570px;
+  margin: 18px 0 0;
+
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 500;
+
+  color: rgba(232, 241, 255, 0.78);
 }
 
-.icon3 {
-  background-image: url("../../public/images/crew_icon.svg");
-  background-size: 115% 115%;
-  background-position: center center;
+.brandStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.loginButton {
-    border-radius: 8px;
-    width: 100%;
-    padding: 10px;
-    margin-top: 20px;
-    border: none;
+.brandStat {
+  min-width: 0;
 
-    background: #4da6d9;
-    color: white;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: 0.25s;
+  padding: 16px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-.loginButton:hover {
-    background: #3b95c7;
+.brandStat b {
+  display: block;
+
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 850;
+
+  color: #ffffff;
 }
 
-/* Анимация ухода влево */
-.slideLeft {
-    animation: slideLeftAnim 0.5s forwards;
+.brandStat span {
+  display: block;
+  margin-top: 8px;
+
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 650;
+
+  color: rgba(230, 240, 255, 0.72);
 }
 
-@keyframes slideLeftAnim {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+.loginCard {
+  padding: 28px;
+
+  border-radius: 28px;
+  border: 1px solid #dfe7f5;
+
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 24px 60px rgba(22, 48, 90, 0.16);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-sizing: border-box;
+}
+
+.cardHeader {
+  margin-bottom: 22px;
+}
+
+.cardOverline {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #8ca1c1;
+}
+
+.cardTitle {
+  margin: 8px 0 0;
+
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 850;
+
+  color: #203d73;
+  letter-spacing: -0.03em;
+}
+
+.cardText {
+  margin: 10px 0 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 550;
+
+  color: #7288ae;
+}
+
+.portalList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.portalButton {
+  width: 100%;
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px;
+
+  border: 1px solid #e1e9f6;
+  border-radius: 18px;
+
+  background: #f8fbff;
+
+  cursor: pointer;
+  text-align: left;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.portalButton:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  border-color: #cfdbef;
+  box-shadow: 0 12px 24px rgba(46, 73, 123, 0.1);
+}
+
+.portalActive {
+  background: #edf4ff;
+  border-color: #aac3f3;
+  box-shadow: 0 12px 28px rgba(50, 99, 191, 0.12);
+}
+
+.portalIcon {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e6eefb;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.portalActive .portalIcon {
+  background: linear-gradient(135deg, #6f94e8 0%, #3263bf 100%);
+}
+
+.portalText {
+  flex: 1;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.portalTitle {
+  font-size: 16px;
+  line-height: 1.15;
+  font-weight: 800;
+
+  color: #203d73;
+}
+
+.portalHint {
+  margin-top: 5px;
+
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 550;
+
+  color: #7a8fb2;
+}
+
+.portalCheck {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  border: 1px solid #d8e2f2;
+
+  color: #3263bf;
+  font-size: 15px;
+  font-weight: 900;
+
+  flex-shrink: 0;
+}
+
+.portalActive .portalCheck {
+  background: #3263bf;
+  color: #ffffff;
+  border-color: #3263bf;
+}
+
+.continueButton {
+  width: 100%;
+  height: 52px;
+
+  margin-top: 20px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #6f94e8 0%, #3263bf 100%);
+  box-shadow: 0 14px 28px rgba(50, 99, 191, 0.18);
+
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 850;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.continueButton:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 18px 34px rgba(50, 99, 191, 0.24);
+}
+
+.footerText {
+  margin: 16px 0 0;
+
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 550;
+
+  color: #8ca1c1;
+  text-align: center;
+}
+
+.brandLogo {
+  width: 80px;
+  height: 80px;
+
+  background-image: url("../../public/images/Muir_icon.svg"); /* <-- твой логотип */
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 20px;
+
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.logoWrapper {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.logoWrapper:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ✅ ВАЖНО — img */
+.brandLogo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
 }

@@ -10,14 +10,14 @@ import HomePage from "./pages/Home";
 import NotFoundPage from "./pages/NotFound";
 import CaptainMainPage from "./pages/MasterMain";
 import CaptainAdd from "./pages/MasterAdd";
-import CoursesPage from "./pages/Courses"
+import CoursesPage from "./pages/Courses";
 
 // Импорт Login page from "./pages/Login";
 import Login from "./pages/Login";
 import LoginLayout from "./layouts/LoginLayout";
 import Crew from "./pages/Login/Crew";
 import Company from "./pages/Login/Company";
-import Master from "./pages/Login/Master";
+import MasterMain from "./pages/MasterMain";
 
 // Импорт layout (если есть)
 import RootLayout from "./layouts/RootLayout";
@@ -31,10 +31,9 @@ import CourseHeader from "./pages/CourseHeader";
 import CourseSidebar from "./pages/CourseSidebar";
 import Course from "./pages/Course";
 
-
 import CompanyPageVessels from "./pages/CompanyPageVessels";
-import CompanyDashboard from "./pages/CompanyDashboard"
-import CompanyPageSubscription from "./pages/CompanyPageSubscription"
+import CompanyDashboard from "./pages/CompanyDashboard";
+import CompanyPageSubscription from "./pages/CompanyPageSubscription";
 import CompanyLayout from "./layouts/CompanyLayout";
 
 const links = {
@@ -57,40 +56,44 @@ const router = createBrowserRouter([
       //   { path: "contacts", element: <ContactsPage /> },
     ],
   },
+
   {
     path: "master",
     element: (
-      <ProtectedRoute redirect={"/login"} allowedRoles={["master"]}>
-        <CaptainLayout links={links} />
-      </ProtectedRoute>
+      /*<ProtectedRoute redirect={"/login"} allowedRoles={["master"]}>*/
+      <CaptainLayout links={links} />
+      /*</ProtectedRoute>*/
     ),
     children: [
       { index: true, element: <CaptainMainPage links={links} /> },
       { path: "add", element: <CaptainAdd links={links} /> },
     ],
   },
+
   {
     path: "login",
     element: <LoginLayout />,
     children: [
       { index: true, element: <Login /> },
       { path: "company", element: <Company /> },
-      { path: "master", element: <Master /> },
       { path: "crew", element: <Crew /> },
     ],
   },
+  
   {
     path: "profile",
     element: (
-      <ProtectedRoute redirect={"/login"} allowedRoles={["crew"]}>
-        <ProfileLayout links={links} />
-      </ProtectedRoute>
+      // <ProtectedRoute redirect={"/login"} allowedRoles={["crew"]}>
+      <ProfileLayout links={links} />
+      // </ProtectedRoute>
     ),
     children: [
       { index: true, element: <ProfileMain /> },
       { path: "courses", element: <CoursesPage /> },
+      { path: "crew-management", element: <MasterMain /> },
     ],
   },
+
   {
     path: "company",
     element: <CompanyLayout />,
@@ -101,16 +104,16 @@ const router = createBrowserRouter([
       { path: "subscription", element: <CompanyPageSubscription /> },
     ],
   },
-  { 
-    path: "course", 
+
+  {
+    path: "course",
     element: <CourseLayout />,
-    children: [
-      { index: true, element: <Course /> },
-    ],
+    children: [{ index: true, element: <Course /> }],
   },
-  { 
-    path: "*", 
-    element: <NotFoundPage/>
+
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 

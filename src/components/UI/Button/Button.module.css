@@ -1,37 +1,59 @@
-.button {
-  font-size: 1em;
-  height: inherit;
-  background-color: #678CA6;
-  border: none;
-  padding: 11px 30px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-wrap: nowrap;
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.border_button {  
-  height: 100%;
-  font-size: 1em;
-  max-height: 49px;
-  background-color: transparent;
-  color: #678CA6;
-  border: 1px solid #5d6d7e;
-  padding: 11px 30px;
-  border-radius: 5px;
-  cursor: pointer;
+.button,
+.border_button {
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 800;
   white-space: nowrap;
-  transition: background-color 0.3s ease;
-  position: relative;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.button {
+  border: none;
+  background: #3263bf;
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(50, 99, 191, 0.18);
+}
 
-.button:hover,
-.border_button:hover {
-  background-color: #4E6F86;
+.button:hover {
+  background: #274f9d;
+  transform: translateY(-1px);
+}
+
+.border_button {
+  border: 1px solid #d8e2f2;
+  background: rgba(255, 255, 255, 0.9);
+  color: #3263bf;
 }
 
 .border_button:hover {
-  color: #F0FAFF;
+  background: #edf4ff;
+  border-color: #bfd2f0;
+  color: #203d73;
+}
+
+.button:active,
+.border_button:active {
+  transform: translateY(0);
+}
+
+.border_button:hover svg,
+.border_button:hover path,
+.border_button:hover img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  color: #3263bf !important;
+  stroke: #3263bf !important;
+}
+
+.border_button:hover {
+  background: #edf4ff;
+  border-color: #bfd2f0;
+  color: #3263bf;
 }

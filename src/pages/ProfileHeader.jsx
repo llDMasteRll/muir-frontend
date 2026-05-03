@@ -1,26 +1,45 @@
 import styles from "../styles/ProfileHeader.module.css";
 import { useNavigate } from "react-router-dom";
 
-const ProfileHeader = ({ links }) => {
+const ProfileHeader = () => {
   const navigate = useNavigate();
 
   return (
-      <div className={styles.container}>
-        <div className={styles.leftSide}>
-          <nav>
-            <div className={styles.logo} onClick={() => navigate("/")}></div>
-            <a onClick={() => navigate("/profile")} style={{cursor: "pointer"}}>Profile</a>
-            <a onClick={() => navigate("/profile/courses")} style={{cursor: "pointer"}}>Courses</a>
-          </nav>
-        </div>
+    <header className={styles.container}>
+      <div className={styles.left}>
+        <button
+          type="button"
+          className={styles.backButton}
+          onClick={() => navigate(-1)}
+        >
+          ← Back
+        </button>
 
-        <div className={styles.rightSide}>
-          <div className={styles.user}>
-            <button className={styles.notification}></button>
-            <button className={styles.profile}></button>
-          </div>
+        <div className={styles.titleBlock}>
+          <span className={styles.overline}>Crew Portal</span>
+          <h1 className={styles.title}>Profile</h1>
         </div>
       </div>
+
+      <div className={styles.right}>
+        <button type="button" className={styles.iconButton} aria-label="Search">
+          ⌕
+        </button>
+
+        <button type="button" className={styles.iconButton} aria-label="Notifications">
+          🔔
+        </button>
+
+        <button type="button" className={styles.profileButton}>
+          <span className={styles.avatar}>YB</span>
+
+          <span className={styles.profileMeta}>
+            <span className={styles.profileName}>Yuriy Bobrov</span>
+            <span className={styles.profileRole}>Master</span>
+          </span>
+        </button>
+      </div>
+    </header>
   );
 };
 
